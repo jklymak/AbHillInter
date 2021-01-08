@@ -25,11 +25,11 @@ K0 = 1.8e-4/2./np.pi
 L0 = 1.8e-4/2./np.pi
 runtype = 'low'  # 'full','filt','low'
 setupname=''
-u0 = 10
+u0 = -10
 N0 = 1e-3
 f0 = 1.410e-4
-runname='LW1km%sU%dAmp%df%03d'%(runtype,u0, amp, f0*1000000)
-comments = 'Boo Who ho'
+runname='Iso1km%sU%dAmp%df%03dBase'%(runtype, u0, amp, f0*1000000)
+comments = 'Forward basic case'
 
 # to change U we need to edit external_forcing recompile
 
@@ -45,12 +45,14 @@ U0 = u0/100.
 # the maxx and maxy are for finer scale runs.
 dx0=100.
 dy0=100.
-maxx = 409600.0 * 3.0
-maxy = 118400.0
+maxx = 1232000.0
+maxy =  128000.0
 
 # reset f0 in data
 shutil.copy('data', 'dataF')
 replace_data('dataF', 'f0', '%1.3e'%f0)
+
+replace_data('data.btforcing', 'btforcingU0', '%1.3e'%U0)
 
 
 # topography parameters:
@@ -134,12 +136,12 @@ mkdir(outdir+'/../build/')
 shutil.copytree('../indata/', outdir+'/../indata/')
 
 if 1:
-    shutil.copy('../build/mitgcmuvU%02d'%u0, outdir+'/../build/mitgcmuv')
-    shutil.copy('../build/mitgcmuvU%02d'%u0, outdir+'/../build/mitgcmuv%02d'%u0)
+    shutil.copy('../build/mitgcmuv', outdir+'/../build/mitgcmuv')
     shutil.copy('../build/Makefile', outdir+'/../build/Makefile')
     shutil.copy('dataF', outdir+'/data')
     shutil.copy('eedata', outdir)
     shutil.copy('data.kl10', outdir)
+    shutil.copy('data.btforcing', outdir)
     try:
       shutil.copy('data.kpp', outdir)
     except:
@@ -223,7 +225,7 @@ _log.info('maxxy %f dy[0] %f maxy/dy %f ny %d', maxy, dy[0], maxy/dy[0], ny)
 
 h = np.real(h - np.min(h))
 #
-# put in an envelope:
+# put in an envelope?
 
 xenvelope = np.zeros(nx) + 0.07
 xenvelope[400:(nx-400)] = 1.
@@ -233,8 +235,8 @@ xenvelope[int(nx/2):] = xenvelope[:int(nx/2)][::-1]
 
 # hband = np.real(hband - np.mean(hband)+np.mean(h))
 hlow = np.real(hlow - np.mean(hlow) + np.mean(h))
-h = h * xenvelope[np.newaxis, :]
-hlow = hlow * xenvelope[np.newaxis, :]
+#h = h * xenvelope[np.newaxis, :]
+#hlow = hlow * xenvelope[np.newaxis, :]
 
 d= hlow - H
 

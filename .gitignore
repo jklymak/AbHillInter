@@ -1,0 +1,8 @@
+build/*.o
+build/*.F
+build/*.f
+build/*.h
+input/__pycache__
+build/mitgcmuv
+results/
+input/*.o*

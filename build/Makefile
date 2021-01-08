@@ -1,11 +1,11 @@
 # Multithreaded + multi-processing makefile for:
-#    Linux onyx01 4.4.178-94.91-default #1 SMP Thu May 2 20:14:31 UTC 2019 (d683ca1) x86_64 x86_64 x86_64 GNU/Linux
+#    Linux onyx07.erdc.hpc.mil 4.4.180-94.130-default #1 SMP Fri Sep 4 09:11:24 UTC 2020 (e5e5142) x86_64 x86_64 x86_64 GNU/Linux
 # This makefile was generated automatically on
-#    Thu Oct 22 23:36:07 CDT 2020
+#    Thu Jan  7 15:16:14 CST 2021
 # by the command:
 #    ../../MITgcm/tools/genmake2 -optfile=../build_options/onyx -mods=../code/ -rootdir=../../MITgcm -mpi
 # executed by:
-#    jklymak@onyx01:/p/home/jklymak/test/build
+#    jklymak@onyx07.erdc.hpc.mil:/p/home/jklymak/AbHillInter/build
 #
 # OPTFILE="../build_options/onyx"
 #
@@ -27,8 +27,8 @@
 
 ROOTDIR     = ../../MITgcm
 BUILDDIR    = .
-SOURCEDIRS  =  ../code/ $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rbcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/eesupp/src $(ROOTDIR)/model/src
-INCLUDEDIRS =  ../code/ $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rbcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/eesupp/inc $(ROOTDIR)/model/inc
+SOURCEDIRS  =  ../code/ $(ROOTDIR)/pkg/btforcing $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rbcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/eesupp/src $(ROOTDIR)/model/src
+INCLUDEDIRS =  ../code/ $(ROOTDIR)/pkg/btforcing $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rbcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/eesupp/inc $(ROOTDIR)/model/inc
 EXEDIR      = .
 EXECUTABLE  = $(EXEDIR)/mitgcmuv
 TOOLSDIR    = $(ROOTDIR)/tools
@@ -40,7 +40,7 @@ EXE_AD      = mitgcmuv_ad
 EXE_FTL     = mitgcmuv_ftl
 EXE_SVD     = mitgcmuv_svd
 
-ENABLED_PACKAGES =  -DALLOW_DEBUG -DALLOW_DIAGNOSTICS -DALLOW_GENERIC_ADVDIFF -DALLOW_KL10 -DALLOW_MDSIO -DALLOW_MOM_COMMON -DALLOW_MOM_FLUXFORM -DALLOW_MOM_VECINV -DALLOW_MONITOR -DALLOW_RBCS -DALLOW_RW -DALLOW_TIMEAVE
+ENABLED_PACKAGES =  -DALLOW_BTFORCING -DALLOW_DEBUG -DALLOW_DIAGNOSTICS -DALLOW_GENERIC_ADVDIFF -DALLOW_KL10 -DALLOW_MDSIO -DALLOW_MOM_COMMON -DALLOW_MOM_FLUXFORM -DALLOW_MOM_VECINV -DALLOW_MONITOR -DALLOW_RBCS -DALLOW_RW -DALLOW_TIMEAVE
 DISABLED_PACKAGES =  -UALLOW_ADMTLM -UALLOW_AIM_V23 -UALLOW_ATM2D -UALLOW_ATM_COMMON -UALLOW_ATM_COMPON_INTERF -UALLOW_ATM_OCN_COUPLER -UALLOW_ATM_PHYS -UALLOW_AUTODIFF -UALLOW_BBL -UALLOW_BLING -UALLOW_BULK_FORCE -UALLOW_CAL -UALLOW_CD_CODE -UALLOW_CFC -UALLOW_CHEAPAML -UALLOW_CHRONOS -UALLOW_COMPON_COMMUNIC -UALLOW_COST -UALLOW_CTRL -UALLOW_DIC -UALLOW_DOWN_SLOPE -UALLOW_EBM -UALLOW_ECCO -UALLOW_EMBED_FILES -UALLOW_EXCH2 -UALLOW_EXF -UALLOW_FIZHI -UALLOW_FLT -UALLOW_FRAZIL -UALLOW_GCHEM -UALLOW_GGL90 -UALLOW_GMREDI -UALLOW_GRDCHK -UALLOW_GRIDALT -UALLOW_ICEFRONT -UALLOW_KPP -UALLOW_LAND -UALLOW_LAYERS -UALLOW_LONGSTEP -UALLOW_MATRIX -UALLOW_MNC -UALLOW_MY82 -UALLOW_MYPACKAGE -UALLOW_OBCS -UALLOW_OCN_COMPON_INTERF -UALLOW_OFFLINE -UALLOW_OPENAD -UALLOW_OPPS -UALLOW_PP81 -UALLOW_PROFILES -UALLOW_PTRACERS -UALLOW_REGRID -UALLOW_RUNCLOCK -UALLOW_SALT_PLUME -UALLOW_SBO -UALLOW_SEAICE -UALLOW_SHAP_FILT -UALLOW_SHELFICE -UALLOW_SHOWFLOPS -UALLOW_SMOOTH -UALLOW_SPHERE -UALLOW_STREAMICE -UALLOW_THSICE -UALLOW_ZONAL_FILT
 
 # These files are created by Makefile
@@ -90,8 +90,9 @@ MAKEFILE = Makefile
 MAKE = make
 
 F77_SRC_FILES =  \
- external_forcing.F \
  monitor.F \
+ btforcing_readparms.F \
+ btforcing_tendency_apply.F \
  chksum_tiled.F \
  debug_call.F \
  debug_cs_corner_uv.F \
@@ -637,6 +638,7 @@ F77_SRC_FILES =  \
  do_write_pickup.F \
  dynamics.F \
  external_fields_load.F \
+ external_forcing.F \
  external_forcing_surf.F \
  find_alpha.F \
  find_hyd_press_1d.F \
@@ -744,8 +746,9 @@ F77_SRC_FILES =  \
  write_pickup.F \
  write_state.F
 NON_AD_F77_SRC_FILES =  \
- external_forcing.F \
  monitor.F \
+ btforcing_readparms.F \
+ btforcing_tendency_apply.F \
  chksum_tiled.F \
  debug_call.F \
  debug_cs_corner_uv.F \
@@ -1109,6 +1112,7 @@ NON_AD_F77_SRC_FILES =  \
  do_statevars_tave.F \
  do_the_model_io.F \
  do_write_pickup.F \
+ external_forcing.F \
  find_hyd_press_1d.F \
  gsw_teos10.F \
  ini_cartesian_grid.F \
@@ -1169,6 +1173,8 @@ H_SRC_FILES =  \
  CPP_OPTIONS.h \
  DIAGNOSTICS_SIZE.h \
  SIZE.h \
+ BTFORCING.h \
+ BTFORCING_OPTIONS.h \
  DEBUG_OPTIONS.h \
  DIAGNOSTICS_CALC.h \
  DIAGNOSTICS.h \
@@ -1366,10 +1372,10 @@ FC_NAMEMANGLE.h:
 
 BUILD_INFO.h:
 	@echo Creating $@ ...
-	-echo "#define THISVER 'checkpoint67s'" > $@
+	-echo "#define THISVER 'checkpoint67u'" > $@
 	-echo "#define THISUSER 'jklymak'" >> $@
-	-echo "#define THISDATE 'Thu Oct 22 23:36:07 CDT 2020'" >> $@
-	-echo "#define THISHOST 'onyx01'" >> $@
+	-echo "#define THISDATE 'Thu Jan  7 15:16:14 CST 2021'" >> $@
+	-echo "#define THISHOST 'onyx07.erdc.hpc.mil'" >> $@
 
 # The normal chain of rules is (  .F - .f - .o  )
 
@@ -1783,8 +1789,12 @@ svd_touch:
 
 
 #  These files are linked from ../code/ ( aka ../code/ )
- CPP_OPTIONS.h DIAGNOSTICS_SIZE.h external_forcing.F monitor.F SIZE.h :
+ CPP_OPTIONS.h DIAGNOSTICS_SIZE.h monitor.F SIZE.h :
 	if [ ! -L $@ ]; then $(LN) ../code//$@ $@; fi
+
+#  These files are linked from $(ROOTDIR)/pkg/btforcing ( aka ../../MITgcm/pkg/btforcing )
+ BTFORCING.h BTFORCING_OPTIONS.h btforcing_readparms.F btforcing_tendency_apply.F :
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/btforcing/$@ $@; fi
 
 #  These files are linked from $(ROOTDIR)/pkg/debug ( aka ../../MITgcm/pkg/debug )
  chksum_tiled.F debug_call.F debug_cs_corner_uv.F debug_enter.F debug_fld_stats_rl.F debug_fld_stats_rs.F debug_leave.F debug_msg.F DEBUG_OPTIONS.h debug_stats_rl.F debug_stats_rs.F fill_in_corners_rl.F write_fullarray_rl.F write_fullarray_rs.F debug_ad.flow :
@@ -1839,7 +1849,7 @@ svd_touch:
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/eesupp/src/$@ $@; fi
 
 #  These files are linked from $(ROOTDIR)/model/src ( aka ../../MITgcm/model/src )
- adams_bashforth2.F adams_bashforth3.F add_walls2masks.F apply_forcing.F calc_3d_diffusivity.F calc_adv_flow.F calc_div_ghat.F calc_eddy_stress.F calc_grad_phi_fv.F calc_grad_phi_hyd.F calc_grad_phi_surf.F calc_grid_angles.F calc_gw.F calc_ivdc.F calc_oce_mxlayer.F calc_phi_hyd.F calc_r_star.F calc_surf_dr.F calc_viscosity.F calc_wsurf_tr.F cg2d_ex0.F cg2d.F cg2d_nsa.F cg2d_sr.F cg3d_ex0.F cg3d.F check_pickup.F config_check.F config_summary.F convective_adjustment.F convective_adjustment_ini.F convectively_mixtracer.F convective_weights.F correction_step.F cycle_ab_tracer.F cycle_tracer.F diags_oceanic_surf_flux.F diags_phi_hyd.F diags_phi_rlow.F diags_rho.F do_atmospheric_phys.F do_fields_blocking_exchanges.F do_oceanic_phys.F do_stagger_fields_exchanges.F do_statevars_diags.F do_statevars_tave.F do_the_model_io.F do_write_pickup.F dynamics.F external_fields_load.F external_forcing_surf.F find_alpha.F find_hyd_press_1d.F find_rho.F forcing_surf_relax.F forward_step.F freesurf_rescale_g.F freeze_surface.F grad_sigma.F gsw_teos10.F impldiff.F ini_cartesian_grid.F ini_cg2d.F ini_cg3d.F ini_cori.F ini_curvilinear_grid.F ini_cylinder_grid.F ini_depths.F ini_dynvars.F ini_eos.F ini_ffields.F ini_fields.F ini_forcing.F ini_global_domain.F ini_grid.F ini_linear_phisurf.F ini_local_grid.F ini_masks_etc.F ini_mixing.F ini_mnc_vars.F ini_model_io.F ini_nh_fields.F ini_nh_vars.F ini_nlfs_vars.F ini_parms.F ini_p_ground.F ini_pressure.F ini_psurf.F ini_salt.F ini_sigma_hfac.F ini_spherical_polar_grid.F ini_theta.F initialise_fixed.F initialise_varia.F ini_vel.F ini_vertical_grid.F integrate_for_w.F integr_continuity.F load_fields_driver.F load_grid_spacing.F load_ref_files.F main_do_loop.F momentum_correction_step.F packages_boot.F packages_check.F packages_error_msg.F packages_init_fixed.F packages_init_variables.F packages_print_msg.F packages_readparms.F packages_unused_msg.F packages_write_pickup.F plot_field.F port_rand.F post_cg3d.F pre_cg3d.F pressure_for_eos.F read_pickup.F remove_mean.F reset_nlfs_vars.F rotate_spherical_polar_grid.F rotate_uv2en.F salt_integrate.F seawater.F set_defaults.F set_grid_factors.F set_parms.F set_ref_state.F solve_for_pressure.F solve_pentadiagonal.F solve_tridiagonal.F solve_uv_tridiago.F state_summary.F swfrac.F taueddy_init_varia.F taueddy_tendency_apply.F temp_integrate.F the_main_loop.F the_model_main.F thermodynamics.F timestep.F timestep_tracer.F timestep_wvel.F tracers_correction_step.F tracers_iigw_correction.F turnoff_model_io.F update_cg2d.F update_etah.F update_etaws.F update_masks_etc.F update_r_star.F update_sigma.F update_surf_dr.F write_grid.F write_pickup.F write_state.F :
+ adams_bashforth2.F adams_bashforth3.F add_walls2masks.F apply_forcing.F calc_3d_diffusivity.F calc_adv_flow.F calc_div_ghat.F calc_eddy_stress.F calc_grad_phi_fv.F calc_grad_phi_hyd.F calc_grad_phi_surf.F calc_grid_angles.F calc_gw.F calc_ivdc.F calc_oce_mxlayer.F calc_phi_hyd.F calc_r_star.F calc_surf_dr.F calc_viscosity.F calc_wsurf_tr.F cg2d_ex0.F cg2d.F cg2d_nsa.F cg2d_sr.F cg3d_ex0.F cg3d.F check_pickup.F config_check.F config_summary.F convective_adjustment.F convective_adjustment_ini.F convectively_mixtracer.F convective_weights.F correction_step.F cycle_ab_tracer.F cycle_tracer.F diags_oceanic_surf_flux.F diags_phi_hyd.F diags_phi_rlow.F diags_rho.F do_atmospheric_phys.F do_fields_blocking_exchanges.F do_oceanic_phys.F do_stagger_fields_exchanges.F do_statevars_diags.F do_statevars_tave.F do_the_model_io.F do_write_pickup.F dynamics.F external_fields_load.F external_forcing.F external_forcing_surf.F find_alpha.F find_hyd_press_1d.F find_rho.F forcing_surf_relax.F forward_step.F freesurf_rescale_g.F freeze_surface.F grad_sigma.F gsw_teos10.F impldiff.F ini_cartesian_grid.F ini_cg2d.F ini_cg3d.F ini_cori.F ini_curvilinear_grid.F ini_cylinder_grid.F ini_depths.F ini_dynvars.F ini_eos.F ini_ffields.F ini_fields.F ini_forcing.F ini_global_domain.F ini_grid.F ini_linear_phisurf.F ini_local_grid.F ini_masks_etc.F ini_mixing.F ini_mnc_vars.F ini_model_io.F ini_nh_fields.F ini_nh_vars.F ini_nlfs_vars.F ini_parms.F ini_p_ground.F ini_pressure.F ini_psurf.F ini_salt.F ini_sigma_hfac.F ini_spherical_polar_grid.F ini_theta.F initialise_fixed.F initialise_varia.F ini_vel.F ini_vertical_grid.F integrate_for_w.F integr_continuity.F load_fields_driver.F load_grid_spacing.F load_ref_files.F main_do_loop.F momentum_correction_step.F packages_boot.F packages_check.F packages_error_msg.F packages_init_fixed.F packages_init_variables.F packages_print_msg.F packages_readparms.F packages_unused_msg.F packages_write_pickup.F plot_field.F port_rand.F post_cg3d.F pre_cg3d.F pressure_for_eos.F read_pickup.F remove_mean.F reset_nlfs_vars.F rotate_spherical_polar_grid.F rotate_uv2en.F salt_integrate.F seawater.F set_defaults.F set_grid_factors.F set_parms.F set_ref_state.F solve_for_pressure.F solve_pentadiagonal.F solve_tridiagonal.F solve_uv_tridiago.F state_summary.F swfrac.F taueddy_init_varia.F taueddy_tendency_apply.F temp_integrate.F the_main_loop.F the_model_main.F thermodynamics.F timestep.F timestep_tracer.F timestep_wvel.F tracers_correction_step.F tracers_iigw_correction.F turnoff_model_io.F update_cg2d.F update_etah.F update_etaws.F update_masks_etc.F update_r_star.F update_sigma.F update_surf_dr.F write_grid.F write_pickup.F write_state.F :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/model/src/$@ $@; fi
 
 #  These files are linked from $(ROOTDIR)/eesupp/inc ( aka ../../MITgcm/eesupp/inc )
@@ -1894,6 +1904,26 @@ bar_check.f: /usr/include/stdc-predef.h
 barrier.f: BARRIER.h CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 barrier.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
 barrier.f: /usr/include/stdc-predef.h
+btforcing_readparms.f: BTFORCING.h BTFORCING_OPTIONS.h CPP_EEMACROS.h
+btforcing_readparms.f: CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
+btforcing_readparms.f: PACKAGES_CONFIG.h PARAMS.h SIZE.h
+btforcing_readparms.f: /usr/include/stdc-predef.h
+btforcing_tendency_apply.f: BTFORCING.h BTFORCING_OPTIONS.h CPP_EEMACROS.h
+btforcing_tendency_apply.f: CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
+btforcing_tendency_apply.f: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h
+btforcing_tendency_apply.f: DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h
+btforcing_tendency_apply.f: DYU_MACROS.h EEPARAMS.h FCORI_MACROS.h GRID.h
+btforcing_tendency_apply.f: GRID_MACROS.h HFACC_MACROS.h HFACS_MACROS.h
+btforcing_tendency_apply.f: HFACW_MACROS.h MASKS_MACROS.h MASKW_MACROS.h
+btforcing_tendency_apply.f: PACKAGES_CONFIG.h RA_MACROS.h RAS_MACROS.h
+btforcing_tendency_apply.f: RAW_MACROS.h RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h
+btforcing_tendency_apply.f: RECIP_DXG_MACROS.h RECIP_DXV_MACROS.h
+btforcing_tendency_apply.f: RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h
+btforcing_tendency_apply.f: RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h
+btforcing_tendency_apply.f: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
+btforcing_tendency_apply.f: RECIP_HFACW_MACROS.h SIZE.h TANPHIATU_MACROS.h
+btforcing_tendency_apply.f: TANPHIATV_MACROS.h /usr/include/stdc-predef.h
+btforcing_tendency_apply.f: XC_MACROS.h YC_MACROS.h
 calc_3d_diffusivity.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h
 calc_3d_diffusivity.f: DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h
 calc_3d_diffusivity.f: DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h DYNVARS.h

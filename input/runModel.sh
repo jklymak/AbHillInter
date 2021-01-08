@@ -2,8 +2,8 @@
 #PBS -m be
 #PBS -M jklymak@gmail.com
 #PBS -l select=1:ncpus=44:mpiprocs=44
-#PBS -l walltime=01:00:00
-#PBS -q debug
+#PBS -l walltime=17:20:00
+#PBS -q standard
 #PBS -A ONRDC35552400
 #PBS -j oe
 #PBS -N ${JOBNAME}
@@ -14,7 +14,7 @@
 cd $PBS_O_WORKDIR
 # top=$1  Passed as qsub  -v top=h60h27f20 runModel.sh
 
-PARENT=test
+PARENT=AbHillInter
 
 top=${PBS_JOBNAME}
 results=${WORKDIR}/${PARENT}/
