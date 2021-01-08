@@ -2,6 +2,7 @@ build/*.o
 build/*.F
 build/*.f
 build/*.h
+build/*.c
 input/__pycache__
 build/mitgcmuv
 results/
