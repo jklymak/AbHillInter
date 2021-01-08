@@ -1,8 +1,8 @@
 #!/bin/sh -l
 #PBS -m be
 #PBS -M jklymak@gmail.com
-#PBS -l select=1:ncpus=44:mpiprocs=44
-#PBS -l walltime=17:20:00
+#PBS -l select=1:ncpus=48:mpiprocs=48
+#PBS -l walltime=07:20:00
 #PBS -q standard
 #PBS -A ONRDC35552400
 #PBS -j oe
@@ -10,6 +10,8 @@
 
 # qsub -N LW1kmlowU10Amp305K18 runModel.sh
 
+# . $MODULESHOME/modules.sh
+module swap mpt compiler/intelmpi
 
 cd $PBS_O_WORKDIR
 # top=$1  Passed as qsub  -v top=h60h27f20 runModel.sh
@@ -36,4 +38,4 @@ pwd
 
 ls -al ../build/mitgcmuv
 printf "Starting: $outdir\n"
-aprun -n 44 ../build/mitgcmuv > mit.out
+mpirun -np 48 ../build/mitgcmuv > mit.out

@@ -5,6 +5,17 @@
 The version I'll use is the `btforcing` branch of my own fork.  https://github.com/jklymak/MITgcm/
 
 
+## Runs: koehr
+
+- Iso1kmlowU10Amp305f141B059Base:
+  - base run, u ro east, beta plane
+- Iso1kmlowU10Amp305f141B000Base:
+  - no beta
+
+### Todo:
+- Wall on north side.
+- U = -0.1
+
 
 
 ## Contents:
