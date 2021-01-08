@@ -1,0 +1,10 @@
+# Packages
+ &PACKAGES
+ useOBCS=.FALSE.,
+ useKL10=.TRUE.,
+ useKPP=.FALSE.,
+ useDIAGNOSTICS=.TRUE.,
+ useMNC=.TRUE.,
+ useRBCS=.FALSE.,
+ useBTFORCING=.FALSE.,
+ /
