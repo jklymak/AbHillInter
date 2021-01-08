@@ -1,6 +1,4 @@
-from numpy import *
 import numpy as np
-#from scipy import *
 
 import matplotlib
 matplotlib.use('Agg')
@@ -15,7 +13,7 @@ import logging
 from replace_data import replace_data
 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 _log = logging.getLogger(__name__)
 
@@ -25,10 +23,13 @@ K0 = 1.8e-4/2./np.pi
 L0 = 1.8e-4/2./np.pi
 runtype = 'low'  # 'full','filt','low'
 setupname=''
-u0 = -10
+u0 = 10
 N0 = 1e-3
 f0 = 1.410e-4
-runname='Iso1km%sU%dAmp%df%03dBase'%(runtype, u0, amp, f0*1000000)
+geo_beta = 5.9e-12
+geo_beta = 0
+runname='Iso1km%sU%dAmp%df%03dB%03dBase'%(runtype, u0, amp, f0*1000000,
+                                     geo_beta*1e13)
 comments = 'Forward basic case'
 
 # to change U we need to edit external_forcing recompile
@@ -45,7 +46,7 @@ U0 = u0/100.
 # the maxx and maxy are for finer scale runs.
 dx0=100.
 dy0=100.
-maxx = 1232000.0
+maxx = 1248000.0
 maxy =  128000.0
 
 # reset f0 in data
@@ -68,8 +69,7 @@ elif runtype=='low':
 
 
 # model size
-nx = 16*78
-nx = 22 * 56
+nx = 24 * 52
 ny = 2*64
 nz = 400
 
@@ -132,8 +132,11 @@ except:
 _log.info(outdir+'/../build/')
 mkdir(outdir+'/../build/')
 
-# copy any data that is in the local indata
-shutil.copytree('../indata/', outdir+'/../indata/')
+try:
+    # copy any data that is in the local indata
+    shutil.copytree('../indata/', outdir+'/../indata/')
+except:
+    pass
 
 if 1:
     shutil.copy('../build/mitgcmuv', outdir+'/../build/mitgcmuv')
@@ -172,7 +175,7 @@ _log.info("Done copying files")
 
 ##### Dx ######
 
-dx = zeros(nx)+maxx/nx
+dx = np.zeros(nx)+maxx/nx
 
 print(len(dx))
 
@@ -184,7 +187,7 @@ _log.info('XCoffset=%1.4f'%x[0])
 
 ##### Dy ######
 
-dy = zeros(ny)+maxy/ny
+dy = np.zeros(ny)+maxy/ny
 
 # dx = zeros(nx)+100.
 y=np.cumsum(dy)
@@ -211,7 +214,7 @@ fig.savefig(outdir+'/figs/dx.pdf')
 
 ######## Bathy ############
 # get the topo:
-d=zeros((ny,nx))
+d=np.zeros((ny,nx))
 # we will add a seed just in case we want to redo this exact phase later...
 seed = 20171117
 xtopo, ytopo, h, hband, hlow, k, l, P0, Pband, Plow = getTopo2D(
@@ -244,10 +247,10 @@ with open(indir+"/topog.bin", "wb") as f:
   d.tofile(f)
 f.close()
 
-_log.info(shape(d))
+_log.info(np.shape(d))
 
 fig, ax = plt.subplots(2,1)
-_log.info('%s %s', shape(x),shape(d))
+_log.info('%s %s', np.shape(x), np.shape(d))
 ax[0].plot(x/1.e3,d[0,:].T)
 ax[0].plot(x/1.e3,xenvelope*1000-4000)
 
@@ -259,7 +262,7 @@ fig.savefig(outdir+'/figs/topo.png')
 ##################
 # dz:
 # dz is from the surface down (right?).  Its saved as positive.
-dz = ones((1,nz))*H/nz
+dz = np.ones((1,nz))*H/nz
 
 with open(indir+"/delZ.bin", "wb") as f:
 	dz.tofile(f)
@@ -272,7 +275,7 @@ z=np.cumsum(dz)
 # temperature goes on the zc grid:
 g=9.8
 alpha = 2e-4
-T0 = 28+cumsum(N0**2/g/alpha*(-dz))
+T0 = 28+np.cumsum(N0**2/g/alpha*(-dz))
 
 with open(indir+"/TRef.bin", "wb") as f:
 	T0.tofile(f)
@@ -308,8 +311,8 @@ with open(indir+"/spongeweight.bin", "wb") as f:
 f.close()
 
 aa=np.zeros((nz,ny,nx))
-aa+=T0[:,newaxis,newaxis]
-_log.info(shape(aa))
+aa+=T0[:,np.newaxis, np.newaxis]
+_log.info(np.shape(aa))
 
 with open(indir+"/Tforce.bin", "wb") as f:
     aa.tofile(f)

@@ -1,13 +1,13 @@
 # Multithreaded + multi-processing makefile for:
-#    Linux onyx07.erdc.hpc.mil 4.4.180-94.130-default #1 SMP Fri Sep 4 09:11:24 UTC 2020 (e5e5142) x86_64 x86_64 x86_64 GNU/Linux
+#    Linux koehr06 3.10.0-957.12.2.el7.x86_64 #1 SMP Fri Apr 19 21:09:07 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
 # This makefile was generated automatically on
-#    Thu Jan  7 15:16:14 CST 2021
+#    Fri Jan  8 18:36:19 UTC 2021
 # by the command:
-#    ../../MITgcm/tools/genmake2 -optfile=../build_options/onyx -mods=../code/ -rootdir=../../MITgcm -mpi
+#    ../../MITgcm/tools/genmake2 -optfile=../build_options/koehr -mods=../code/ -rootdir=../../MITgcm -mpi
 # executed by:
-#    jklymak@onyx07.erdc.hpc.mil:/p/home/jklymak/AbHillInter/build
+#    jklymak@koehr06:/p/home/jklymak/AbHillInter/build
 #
-# OPTFILE="../build_options/onyx"
+# OPTFILE="../build_options/koehr"
 #
 # BUILDDIR     : Directory where object files are written
 # SOURCEDIRS   : Directories containing the source (.F) files
@@ -53,37 +53,37 @@ MAKEDEPEND = $(TOOLSDIR)/xmakedepend
 # Special preprocessor (KAP on DECs, FPP on Crays)
 KPP = 
 # Fortran compiler
-FC = ftn
+FC = mpiifort
 # Fortran compiler
-F90C = ftn
+F90C = mpif90
 # C compiler
-CC = cc
+CC = mpiicc
 # Link editor
-LINK = ftn 
+LINK = mpiifort -shared-intel
 
 # Defines for CPP
-DEFINES = -DWORDLENGTH=4 -DALLOW_USE_MPI -DALWAYS_USE_MPI -DALLOW_USE_MPI -DHAVE_SYSTEM -DHAVE_FDATE -DHAVE_CLOC -DHAVE_SETRLSTK -DHAVE_SIGREG -DHAVE_STAT -DHAVE_LAPACK -DHAVE_FLUSH 
+DEFINES = -DALLOW_USE_MPI -DALWAYS_USE_MPI -DWORDLENGTH=4 -DALLOW_USE_MPI -DHAVE_SYSTEM -DHAVE_FDATE -DHAVE_ETIME_FCT -DHAVE_CLOC -DHAVE_SETRLSTK -DHAVE_SIGREG -DHAVE_STAT -DHAVE_FLUSH 
 # Includes for CPP
-INCLUDES = -I/opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include
+INCLUDES = -I/p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include
 # default CPP includes for makedepend
-CPPINCLUDES =  -I/usr/lib64/gcc/x86_64-suse-linux/4.8/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/4.8/include-fixed -I/usr/lib64/gcc/x86_64-suse-linux/4.8/../../../../x86_64-suse-linux/include -I/usr/include
+CPPINCLUDES =  -I/p/app/intel/parallel_studio_xe_2019_update4/compilers_and_libraries/linux/ipp/include -I/p/app/intel/parallel_studio_xe_2019_update4/compilers_and_libraries/linux/tbb/include -I/p/app/intel/parallel_studio_xe_2019_update4/compilers_and_libraries/linux/mkl/include -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include
 # Flags for KPP
 KFLAGS1 = 
 KFLAGS2 = 
 # Optim./debug for FC
-FFLAGS = -h pic -dynamic
-FOPTIM = -O0 -hfp0 
+FFLAGS =  -traceback -fPIC -W0 -WB -assume byterecl -align -fpe0
+FOPTIM = -O2 -ip -xSSE4.2 -fp-model source -ftz 
 # Optim./debug for FC
 F90FLAGS = 
 F90OPTIM = 
 F90FIXEDFORMAT = 
 # Flags for CC
-CFLAGS = -h pic -dynamic
+CFLAGS = -fPIC
 # Files that should not be optimized
-NOOPTFILES = 
-NOOPTFLAGS = -O0
+NOOPTFILES = seaice_growth.F calc_oce_mxlayer.F fizhi_lsm.F fizhi_clockstuff.F
+NOOPTFLAGS = -O0 -fPIC
 # Flags and libraries needed for linking
-LIBS = -I/opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/lib
+LIBS = 
 # Name of the makefile
 MAKEFILE = Makefile
 # Name of the make program
@@ -1355,7 +1355,7 @@ CLEAN:
 	-rm -f oad_cp.[0-9][0-9][0-9].?????
 
 makefile:
-	$(TOOLSDIR)/genmake2  "-optfile=../build_options/onyx" "-mods=../code/" "-rootdir=../../MITgcm" "-mpi"
+	$(TOOLSDIR)/genmake2  "-optfile=../build_options/koehr" "-mods=../code/" "-rootdir=../../MITgcm" "-mpi"
 cleanlinks:
 	-find . -type l -exec rm {} \;
 
@@ -1374,8 +1374,8 @@ BUILD_INFO.h:
 	@echo Creating $@ ...
 	-echo "#define THISVER 'checkpoint67u'" > $@
 	-echo "#define THISUSER 'jklymak'" >> $@
-	-echo "#define THISDATE 'Thu Jan  7 15:16:14 CST 2021'" >> $@
-	-echo "#define THISHOST 'onyx07.erdc.hpc.mil'" >> $@
+	-echo "#define THISDATE 'Fri Jan  8 18:36:19 UTC 2021'" >> $@
+	-echo "#define THISHOST 'koehr06'" >> $@
 
 # The normal chain of rules is (  .F - .f - .o  )
 
@@ -1383,7 +1383,7 @@ BUILD_INFO.h:
 ## %.o : %.F
 
 # C preprocessing and replacing the _d in constants:
-CPPCMD = cat $< |  cpp -traditional -P $(DEFINES) $(INCLUDES) | $(TOOLSDIR)/set64bitConst.sh
+CPPCMD = cat $< |  cpp  -traditional -P $(DEFINES) $(INCLUDES) | $(TOOLSDIR)/set64bitConst.sh
 
 .F.f:
 	$(CPPCMD)  > $@
@@ -1785,6 +1785,14 @@ svd_touch:
 	cmp ad_config.template AD_CONFIG.h || cat ad_config.template > AD_CONFIG.h
 	@-rm -f ad_config.template
 
+seaice_growth.o: seaice_growth.f
+	$(FC) $(FFLAGS) $(NOOPTFLAGS) -c $<
+calc_oce_mxlayer.o: calc_oce_mxlayer.f
+	$(FC) $(FFLAGS) $(NOOPTFLAGS) -c $<
+fizhi_lsm.o: fizhi_lsm.f
+	$(FC) $(FFLAGS) $(NOOPTFLAGS) -c $<
+fizhi_clockstuff.o: fizhi_clockstuff.f
+	$(FC) $(FFLAGS) $(NOOPTFLAGS) -c $<
 # This section creates symbolic links
 
 
@@ -1881,7 +1889,7 @@ add_walls2masks.f: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h SIZE.h
 add_walls2masks.f: TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 add_walls2masks.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 all_proc_die.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-all_proc_die.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+all_proc_die.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 all_proc_die.f: SIZE.h /usr/include/stdc-predef.h
 apply_forcing.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
 apply_forcing.f: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h
@@ -1897,13 +1905,13 @@ apply_forcing.f: RECIP_HFACW_MACROS.h SIZE.h SURFACE.h TANPHIATU_MACROS.h
 apply_forcing.f: TANPHIATV_MACROS.h /usr/include/stdc-predef.h XC_MACROS.h
 apply_forcing.f: YC_MACROS.h
 bar2.f: BAR2.h CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-bar2.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-bar2.f: /usr/include/stdc-predef.h
+bar2.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+bar2.f: SIZE.h /usr/include/stdc-predef.h
 bar_check.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h SIZE.h
 bar_check.f: /usr/include/stdc-predef.h
 barrier.f: BARRIER.h CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-barrier.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-barrier.f: /usr/include/stdc-predef.h
+barrier.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+barrier.f: SIZE.h /usr/include/stdc-predef.h
 btforcing_readparms.f: BTFORCING.h BTFORCING_OPTIONS.h CPP_EEMACROS.h
 btforcing_readparms.f: CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 btforcing_readparms.f: PACKAGES_CONFIG.h PARAMS.h SIZE.h
@@ -2159,12 +2167,13 @@ cg3d.f: XC_MACROS.h YC_MACROS.h
 check_pickup.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 check_pickup.f: PARAMS.h RESTART.h SIZE.h /usr/include/stdc-predef.h
 check_threads.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-check_threads.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+check_threads.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 check_threads.f: SIZE.h /usr/include/stdc-predef.h
 chksum_tiled.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DEBUG_OPTIONS.h
 chksum_tiled.f: EEPARAMS.h PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
 comm_stats.f: BAR2.h CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-comm_stats.f: EXCH.h /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+comm_stats.f: EXCH.h
+comm_stats.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 comm_stats.f: SIZE.h /usr/include/stdc-predef.h
 config_check.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 config_check.f: MOM_COMMON_OPTIONS.h PACKAGES_CONFIG.h PARAMS.h SIZE.h
@@ -2243,9 +2252,9 @@ correction_step.f: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h SIZE.h
 correction_step.f: TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 correction_step.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 cumulsum_z_tile.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CUMULSUM.h EEPARAMS.h
-cumulsum_z_tile.f: EESUPPORT.h
-cumulsum_z_tile.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-cumulsum_z_tile.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+cumulsum_z_tile.f: EESUPPORT.h PACKAGES_CONFIG.h
+cumulsum_z_tile.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+cumulsum_z_tile.f: SIZE.h /usr/include/stdc-predef.h
 cycle_ab_tracer.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 cycle_ab_tracer.f: PARAMS.h SIZE.h /usr/include/stdc-predef.h
 cycle_tracer.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
@@ -2619,11 +2628,12 @@ diagstats_mnc_out.f: DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h DYU_MACROS.h
 diagstats_mnc_out.f: EEPARAMS.h EESUPPORT.h FCORI_MACROS.h GRID.h
 diagstats_mnc_out.f: GRID_MACROS.h HFACC_MACROS.h HFACS_MACROS.h
 diagstats_mnc_out.f: HFACW_MACROS.h MASKS_MACROS.h MASKW_MACROS.h
-diagstats_mnc_out.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-diagstats_mnc_out.f: PACKAGES_CONFIG.h PARAMS.h RA_MACROS.h RAS_MACROS.h
-diagstats_mnc_out.f: RAW_MACROS.h RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h
-diagstats_mnc_out.f: RECIP_DXG_MACROS.h RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h
-diagstats_mnc_out.f: RECIP_DYF_MACROS.h RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h
+diagstats_mnc_out.f: PACKAGES_CONFIG.h
+diagstats_mnc_out.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+diagstats_mnc_out.f: PARAMS.h RA_MACROS.h RAS_MACROS.h RAW_MACROS.h
+diagstats_mnc_out.f: RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h RECIP_DXG_MACROS.h
+diagstats_mnc_out.f: RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h
+diagstats_mnc_out.f: RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h
 diagstats_mnc_out.f: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 diagstats_mnc_out.f: RECIP_HFACW_MACROS.h SIZE.h TANPHIATU_MACROS.h
 diagstats_mnc_out.f: TANPHIATV_MACROS.h /usr/include/stdc-predef.h XC_MACROS.h
@@ -2725,25 +2735,27 @@ dynamics.f: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h
 dynamics.f: SIZE.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 dynamics.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 eeboot.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-eeboot.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-eeboot.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+eeboot.f: PACKAGES_CONFIG.h
+eeboot.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+eeboot.f: SIZE.h /usr/include/stdc-predef.h
 eeboot_minimal.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-eeboot_minimal.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-eeboot_minimal.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+eeboot_minimal.f: PACKAGES_CONFIG.h
+eeboot_minimal.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+eeboot_minimal.f: SIZE.h /usr/include/stdc-predef.h
 eedata_example.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h SIZE.h
 eedata_example.f: /usr/include/stdc-predef.h
 eedie.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-eedie.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-eedie.f: /usr/include/stdc-predef.h
+eedie.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+eedie.f: SIZE.h /usr/include/stdc-predef.h
 eeintro_msg.f: BUILD_INFO.h CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h
 eeintro_msg.f: EESUPPORT.h
-eeintro_msg.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-eeintro_msg.f: /usr/include/stdc-predef.h
+eeintro_msg.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+eeintro_msg.f: SIZE.h /usr/include/stdc-predef.h
 eeset_parms.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h EXCH.h
-eeset_parms.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-eeset_parms.f: /usr/include/stdc-predef.h
+eeset_parms.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+eeset_parms.f: SIZE.h /usr/include/stdc-predef.h
 eewrite_eeenv.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-eewrite_eeenv.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+eewrite_eeenv.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 eewrite_eeenv.f: SIZE.h /usr/include/stdc-predef.h
 exch0_r4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h SIZE.h
 exch0_r4.f: /usr/include/stdc-predef.h
@@ -2810,74 +2822,74 @@ exch_3d_rl.f: SIZE.h /usr/include/stdc-predef.h
 exch_3d_rs.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h PACKAGES_CONFIG.h
 exch_3d_rs.f: SIZE.h /usr/include/stdc-predef.h
 exch_cycle_ebl.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h EXCH.h
-exch_cycle_ebl.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_cycle_ebl.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_cycle_ebl.f: SIZE.h /usr/include/stdc-predef.h
 exch_init.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h EXCH.h
-exch_init.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-exch_init.f: /usr/include/stdc-predef.h
+exch_init.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+exch_init.f: SIZE.h /usr/include/stdc-predef.h
 exch_r4_recv_get_x.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_r4_recv_get_x.f: EXCH.h
-exch_r4_recv_get_x.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_r4_recv_get_x.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_r4_recv_get_x.f: SIZE.h /usr/include/stdc-predef.h
 exch_r4_recv_get_y.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_r4_recv_get_y.f: EXCH.h
-exch_r4_recv_get_y.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_r4_recv_get_y.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_r4_recv_get_y.f: SIZE.h /usr/include/stdc-predef.h
 exch_r4_send_put_x.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_r4_send_put_x.f: EXCH.h
-exch_r4_send_put_x.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_r4_send_put_x.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_r4_send_put_x.f: SIZE.h /usr/include/stdc-predef.h
 exch_r4_send_put_y.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_r4_send_put_y.f: EXCH.h
-exch_r4_send_put_y.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_r4_send_put_y.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_r4_send_put_y.f: SIZE.h /usr/include/stdc-predef.h
 exch_r8_recv_get_x.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_r8_recv_get_x.f: EXCH.h
-exch_r8_recv_get_x.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_r8_recv_get_x.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_r8_recv_get_x.f: SIZE.h /usr/include/stdc-predef.h
 exch_r8_recv_get_y.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_r8_recv_get_y.f: EXCH.h
-exch_r8_recv_get_y.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_r8_recv_get_y.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_r8_recv_get_y.f: SIZE.h /usr/include/stdc-predef.h
 exch_r8_send_put_x.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_r8_send_put_x.f: EXCH.h
-exch_r8_send_put_x.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_r8_send_put_x.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_r8_send_put_x.f: SIZE.h /usr/include/stdc-predef.h
 exch_r8_send_put_y.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_r8_send_put_y.f: EXCH.h
-exch_r8_send_put_y.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_r8_send_put_y.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_r8_send_put_y.f: SIZE.h /usr/include/stdc-predef.h
 exch_rl_recv_get_x.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_rl_recv_get_x.f: EXCH.h
-exch_rl_recv_get_x.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_rl_recv_get_x.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_rl_recv_get_x.f: SIZE.h /usr/include/stdc-predef.h
 exch_rl_recv_get_y.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_rl_recv_get_y.f: EXCH.h
-exch_rl_recv_get_y.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_rl_recv_get_y.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_rl_recv_get_y.f: SIZE.h /usr/include/stdc-predef.h
 exch_rl_send_put_x.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_rl_send_put_x.f: EXCH.h
-exch_rl_send_put_x.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_rl_send_put_x.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_rl_send_put_x.f: SIZE.h /usr/include/stdc-predef.h
 exch_rl_send_put_y.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_rl_send_put_y.f: EXCH.h
-exch_rl_send_put_y.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_rl_send_put_y.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_rl_send_put_y.f: SIZE.h /usr/include/stdc-predef.h
 exch_rs_recv_get_x.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_rs_recv_get_x.f: EXCH.h
-exch_rs_recv_get_x.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_rs_recv_get_x.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_rs_recv_get_x.f: SIZE.h /usr/include/stdc-predef.h
 exch_rs_recv_get_y.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_rs_recv_get_y.f: EXCH.h
-exch_rs_recv_get_y.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_rs_recv_get_y.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_rs_recv_get_y.f: SIZE.h /usr/include/stdc-predef.h
 exch_rs_send_put_x.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_rs_send_put_x.f: EXCH.h
-exch_rs_send_put_x.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_rs_send_put_x.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_rs_send_put_x.f: SIZE.h /usr/include/stdc-predef.h
 exch_rs_send_put_y.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 exch_rs_send_put_y.f: EXCH.h
-exch_rs_send_put_y.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+exch_rs_send_put_y.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 exch_rs_send_put_y.f: SIZE.h /usr/include/stdc-predef.h
 exch_s3d_r4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h PACKAGES_CONFIG.h
 exch_s3d_r4.f: SIZE.h /usr/include/stdc-predef.h
@@ -3979,53 +3991,57 @@ gad_write_pickup.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 gad_write_pickup.f: GAD.h GAD_OPTIONS.h GAD_SOM_VARS.h PACKAGES_CONFIG.h
 gad_write_pickup.f: PARAMS.h SIZE.h /usr/include/stdc-predef.h
 gather_2d_r4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-gather_2d_r4.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-gather_2d_r4.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+gather_2d_r4.f: PACKAGES_CONFIG.h
+gather_2d_r4.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+gather_2d_r4.f: SIZE.h /usr/include/stdc-predef.h
 gather_2d_r8.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-gather_2d_r8.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-gather_2d_r8.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+gather_2d_r8.f: PACKAGES_CONFIG.h
+gather_2d_r8.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+gather_2d_r8.f: SIZE.h /usr/include/stdc-predef.h
 gather_2d_wh_r4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-gather_2d_wh_r4.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-gather_2d_wh_r4.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+gather_2d_wh_r4.f: PACKAGES_CONFIG.h
+gather_2d_wh_r4.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+gather_2d_wh_r4.f: SIZE.h /usr/include/stdc-predef.h
 gather_2d_wh_r8.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-gather_2d_wh_r8.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-gather_2d_wh_r8.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+gather_2d_wh_r8.f: PACKAGES_CONFIG.h
+gather_2d_wh_r8.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+gather_2d_wh_r8.f: SIZE.h /usr/include/stdc-predef.h
 gather_vec_r4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-gather_vec_r4.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+gather_vec_r4.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 gather_vec_r4.f: SIZE.h /usr/include/stdc-predef.h
 gather_vec_r8.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-gather_vec_r8.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+gather_vec_r8.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 gather_vec_r8.f: SIZE.h /usr/include/stdc-predef.h
 gather_xz.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 gather_xz.f: EESUPPORT.h
-gather_xz.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-gather_xz.f: /usr/include/stdc-predef.h
+gather_xz.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+gather_xz.f: SIZE.h /usr/include/stdc-predef.h
 gather_yz.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 gather_yz.f: EESUPPORT.h
-gather_yz.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-gather_yz.f: /usr/include/stdc-predef.h
+gather_yz.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+gather_yz.f: SIZE.h /usr/include/stdc-predef.h
 get_periodic_interval.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h
 get_periodic_interval.f: /usr/include/stdc-predef.h
 get_write_global_fld.f: CPP_EEMACROS.h CPP_EEOPTIONS.h
 get_write_global_fld.f: /usr/include/stdc-predef.h
 global_max.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 global_max.f: GLOBAL_MAX.h
-global_max.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-global_max.f: /usr/include/stdc-predef.h
+global_max.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+global_max.f: SIZE.h /usr/include/stdc-predef.h
 global_sum.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 global_sum.f: GLOBAL_SUM.h
-global_sum.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-global_sum.f: /usr/include/stdc-predef.h
+global_sum.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+global_sum.f: SIZE.h /usr/include/stdc-predef.h
 global_sum_singlecpu.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEBUFF_SCPU.h
-global_sum_singlecpu.f: EEPARAMS.h EESUPPORT.h GLOBAL_SUM.h
-global_sum_singlecpu.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-global_sum_singlecpu.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+global_sum_singlecpu.f: EEPARAMS.h EESUPPORT.h GLOBAL_SUM.h PACKAGES_CONFIG.h
+global_sum_singlecpu.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+global_sum_singlecpu.f: SIZE.h /usr/include/stdc-predef.h
 global_sum_tile.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
 global_sum_tile.f: GLOBAL_SUM.h
-global_sum_tile.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+global_sum_tile.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 global_sum_tile.f: SIZE.h /usr/include/stdc-predef.h
 global_vec_sum.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-global_vec_sum.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+global_vec_sum.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 global_vec_sum.f: SIZE.h /usr/include/stdc-predef.h
 grad_sigma.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
 grad_sigma.f: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h
@@ -4039,8 +4055,8 @@ grad_sigma.f: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h
 grad_sigma.f: SIZE.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 grad_sigma.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 gsum.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-gsum.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-gsum.f: /usr/include/stdc-predef.h
+gsum.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+gsum.f: SIZE.h /usr/include/stdc-predef.h
 gsw_teos10.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h
 gsw_teos10.f: /usr/include/stdc-predef.h
 impldiff.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
@@ -4092,10 +4108,9 @@ ini_cg3d.f: RECIP_HFACW_MACROS.h SIZE.h SOLVE_FOR_PRESSURE3D.h SURFACE.h
 ini_cg3d.f: TANPHIATU_MACROS.h TANPHIATV_MACROS.h /usr/include/stdc-predef.h
 ini_cg3d.f: XC_MACROS.h YC_MACROS.h
 ini_communication_patterns.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h
-ini_communication_patterns.f: EESUPPORT.h EXCH.h
-ini_communication_patterns.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-ini_communication_patterns.f: PACKAGES_CONFIG.h SIZE.h
-ini_communication_patterns.f: /usr/include/stdc-predef.h
+ini_communication_patterns.f: EESUPPORT.h EXCH.h PACKAGES_CONFIG.h
+ini_communication_patterns.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+ini_communication_patterns.f: SIZE.h /usr/include/stdc-predef.h
 ini_cori.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
 ini_cori.f: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h
 ini_cori.f: DYG_MACROS.h DYU_MACROS.h EEPARAMS.h FCORI_MACROS.h GRID.h
@@ -4254,10 +4269,9 @@ ini_mnc_vars.f: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h
 ini_mnc_vars.f: SIZE.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 ini_mnc_vars.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 ini_model_io.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEBUFF_SCPU.h
-ini_model_io.f: EEPARAMS.h EESUPPORT.h
-ini_model_io.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-ini_model_io.f: PACKAGES_CONFIG.h PARAMS.h RESTART.h SIZE.h
-ini_model_io.f: /usr/include/stdc-predef.h
+ini_model_io.f: EEPARAMS.h EESUPPORT.h PACKAGES_CONFIG.h
+ini_model_io.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+ini_model_io.f: PARAMS.h RESTART.h SIZE.h /usr/include/stdc-predef.h
 ini_nh_fields.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
 ini_nh_fields.f: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h
 ini_nh_fields.f: DYF_MACROS.h DYG_MACROS.h DYU_MACROS.h EEPARAMS.h
@@ -4322,8 +4336,8 @@ ini_pressure.f: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h
 ini_pressure.f: SIZE.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 ini_pressure.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 ini_procs.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-ini_procs.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-ini_procs.f: /usr/include/stdc-predef.h
+ini_procs.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+ini_procs.f: SIZE.h /usr/include/stdc-predef.h
 ini_psurf.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
 ini_psurf.f: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h
 ini_psurf.f: DYG_MACROS.h DYNVARS.h DYU_MACROS.h EEPARAMS.h FCORI_MACROS.h
@@ -4386,10 +4400,9 @@ ini_theta.f: RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 ini_theta.f: RECIP_HFACW_MACROS.h SIZE.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 ini_theta.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 ini_threading_environment.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h
-ini_threading_environment.f: EESUPPORT.h
-ini_threading_environment.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-ini_threading_environment.f: PACKAGES_CONFIG.h SIZE.h
-ini_threading_environment.f: /usr/include/stdc-predef.h
+ini_threading_environment.f: EESUPPORT.h PACKAGES_CONFIG.h
+ini_threading_environment.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+ini_threading_environment.f: SIZE.h /usr/include/stdc-predef.h
 initialise_fixed.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 initialise_fixed.f: PACKAGES_CONFIG.h PARAMS.h SIZE.h
 initialise_fixed.f: /usr/include/stdc-predef.h
@@ -4529,18 +4542,18 @@ main.f: DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h
 main.f: DYNVARS.h DYU_MACROS.h EEPARAMS.h EESUPPORT.h FCORI_MACROS.h FFIELDS.h
 main.f: GRID.h GRID_MACROS.h HFACC_MACROS.h HFACS_MACROS.h HFACW_MACROS.h
 main.f: MAIN_PDIRECTIVES1.h MAIN_PDIRECTIVES2.h MASKS_MACROS.h MASKW_MACROS.h
-main.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-main.f: PACKAGES_CONFIG.h PARAMS.h RA_MACROS.h RAS_MACROS.h RAW_MACROS.h
-main.f: RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h RECIP_DXG_MACROS.h
-main.f: RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h
-main.f: RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h
-main.f: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h SIGREG.h SIZE.h SURFACE.h
-main.f: TANPHIATU_MACROS.h TANPHIATV_MACROS.h /usr/include/stdc-predef.h
-main.f: XC_MACROS.h YC_MACROS.h
+main.f: PACKAGES_CONFIG.h
+main.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+main.f: PARAMS.h RA_MACROS.h RAS_MACROS.h RAW_MACROS.h RECIP_DXC_MACROS.h
+main.f: RECIP_DXF_MACROS.h RECIP_DXG_MACROS.h RECIP_DXV_MACROS.h
+main.f: RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h RECIP_DYG_MACROS.h
+main.f: RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
+main.f: RECIP_HFACW_MACROS.h SIGREG.h SIZE.h SURFACE.h TANPHIATU_MACROS.h
+main.f: TANPHIATV_MACROS.h /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 master_cpu_io.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h SIZE.h
 master_cpu_io.f: /usr/include/stdc-predef.h
 master_cpu_thread.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-master_cpu_thread.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+master_cpu_thread.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 master_cpu_thread.f: SIZE.h /usr/include/stdc-predef.h
 mds_byteswapi4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h /usr/include/stdc-predef.h
 mds_byteswapr4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h /usr/include/stdc-predef.h
@@ -5744,8 +5757,8 @@ pressure_for_eos.f: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h SIZE.h
 pressure_for_eos.f: TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 pressure_for_eos.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 print.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-print.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-print.f: /usr/include/stdc-predef.h
+print.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+print.f: SIZE.h /usr/include/stdc-predef.h
 rbcs_add_tendency.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DYNVARS.h
 rbcs_add_tendency.f: EEPARAMS.h PACKAGES_CONFIG.h PARAMS.h RBCS_FIELDS.h
 rbcs_add_tendency.f: RBCS_OPTIONS.h RBCS_PARAMS.h RBCS_SIZE.h SIZE.h
@@ -5860,29 +5873,33 @@ salt_integrate.f: RECIP_HFACW_MACROS.h RESTART.h SIZE.h TANPHIATU_MACROS.h
 salt_integrate.f: TANPHIATV_MACROS.h /usr/include/stdc-predef.h XC_MACROS.h
 salt_integrate.f: YC_MACROS.h
 scatter_2d_r4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-scatter_2d_r4.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-scatter_2d_r4.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+scatter_2d_r4.f: PACKAGES_CONFIG.h
+scatter_2d_r4.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+scatter_2d_r4.f: SIZE.h /usr/include/stdc-predef.h
 scatter_2d_r8.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-scatter_2d_r8.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-scatter_2d_r8.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+scatter_2d_r8.f: PACKAGES_CONFIG.h
+scatter_2d_r8.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+scatter_2d_r8.f: SIZE.h /usr/include/stdc-predef.h
 scatter_2d_wh_r4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-scatter_2d_wh_r4.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-scatter_2d_wh_r4.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+scatter_2d_wh_r4.f: PACKAGES_CONFIG.h
+scatter_2d_wh_r4.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+scatter_2d_wh_r4.f: SIZE.h /usr/include/stdc-predef.h
 scatter_2d_wh_r8.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-scatter_2d_wh_r8.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
-scatter_2d_wh_r8.f: PACKAGES_CONFIG.h SIZE.h /usr/include/stdc-predef.h
+scatter_2d_wh_r8.f: PACKAGES_CONFIG.h
+scatter_2d_wh_r8.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+scatter_2d_wh_r8.f: SIZE.h /usr/include/stdc-predef.h
 scatter_vec_r4.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-scatter_vec_r4.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+scatter_vec_r4.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 scatter_vec_r4.f: SIZE.h /usr/include/stdc-predef.h
 scatter_vec_r8.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-scatter_vec_r8.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h
+scatter_vec_r8.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
 scatter_vec_r8.f: SIZE.h /usr/include/stdc-predef.h
 scatter_xz.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-scatter_xz.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-scatter_xz.f: /usr/include/stdc-predef.h
+scatter_xz.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+scatter_xz.f: SIZE.h /usr/include/stdc-predef.h
 scatter_yz.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-scatter_yz.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-scatter_yz.f: /usr/include/stdc-predef.h
+scatter_yz.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+scatter_yz.f: SIZE.h /usr/include/stdc-predef.h
 seawater.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h
 seawater.f: /usr/include/stdc-predef.h
 set_defaults.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
@@ -6096,8 +6113,8 @@ timeave_surf_flux.f: SURFACE.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 timeave_surf_flux.f: TIMEAVE_OPTIONS.h TIMEAVE_STATV.h
 timeave_surf_flux.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 timers.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h EESUPPORT.h
-timers.f: /opt/cray/pe/mpt/7.6.3/gni/mpich-cray/8.6/include/mpif.h SIZE.h
-timers.f: /usr/include/stdc-predef.h
+timers.f: /p/app/intel/parallel_studio_xe_2019_update4/impi/2019.4.243/intel64/include/mpif.h
+timers.f: SIZE.h /usr/include/stdc-predef.h
 timestep.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
 timestep.f: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h
 timestep.f: DYG_MACROS.h DYNVARS.h DYU_MACROS.h EEPARAMS.h FCORI_MACROS.h
