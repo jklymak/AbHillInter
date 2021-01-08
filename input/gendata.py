@@ -27,8 +27,8 @@ u0 = 10
 N0 = 1e-3
 f0 = 1.410e-4
 geo_beta = 5.9e-12
-geo_beta = 0
-runname='Iso1km%sU%dAmp%df%03dB%03dBase'%(runtype, u0, amp, f0*1000000,
+#geo_beta = 0
+runname='Iso1km%sU%dAmp%df%03dB%03dWall'%(runtype, u0, amp, f0*1000000,
                                      geo_beta*1e13)
 comments = 'Forward basic case'
 
@@ -242,6 +242,8 @@ hlow = np.real(hlow - np.mean(hlow) + np.mean(h))
 #hlow = hlow * xenvelope[np.newaxis, :]
 
 d= hlow - H
+
+d[0, :] = 0.0
 
 with open(indir+"/topog.bin", "wb") as f:
   d.tofile(f)

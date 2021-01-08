@@ -5,5 +5,7 @@ build/*.h
 build/*.c
 input/__pycache__
 build/mitgcmuv
+build/*.log
+
 results/
 input/*.o*
