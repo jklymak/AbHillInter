@@ -112,6 +112,7 @@ if backupmodel:
     pass
 
   copy('gendata.py',outdir)
+  copy('moddata.py',outdir)
 else:
   outdir=outdir+'input/'
 

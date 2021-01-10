@@ -6,5 +6,5 @@
  useDIAGNOSTICS=.TRUE.,
  useMNC=.TRUE.,
  useRBCS=.FALSE.,
- useBTFORCING=.FALSE.,
+ useBTFORCING=.TRUE.,
  /

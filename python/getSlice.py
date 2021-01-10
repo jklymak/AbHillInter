@@ -1,10 +1,25 @@
 import xarray as xr
+import xmitgcm as xm
+import os
+from dask.diagnostics import ProgressBar
 
-for f in ['038', '073', '100', '126', '141']:
-    td = 'LW1kmlowU10Amp305f' + f
-    todo = '../results/{}/input/final.nc'.format(td)
+runname = 'Iso1kmlowU10Amp305f141B059Base'
+data_dir = f'../results/{runname}/input'
+out_dir = f'../reduceddata/{runname}/'
+try:
+    os.mkdir('../reduceddata')
+except:
+    pass
+try:
+    os.mkdir(out_dir)
+except:
+    pass
 
-    with xr.open_dataset(todo) as ds:
-        print(ds)
-        ds = ds.isel(j=10, j_g=10, record=-1)
-        ds.to_netcdf('../reduceddata/AllSlice{}.nc'.format(td))
+ds = xm.open_mdsdataset(data_dir, prefix=['final', 'final2d'])
+
+work = (ds['VVEL'] * ds['hFacS'] * ds['rAs']).sum(dim=('YG', 'XC'))
+
+work.attrs['Processing'] = 'made with getWork.py'
+
+with ProgressBar():
+    work.to_netcdf(f'{out_dir}/work.nc')

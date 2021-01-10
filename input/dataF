@@ -34,7 +34,7 @@
 # hFacSup=1.8,
  saltStepping=.FALSE.,
  staggerTimeStep=.TRUE.,
- momTidalForcing=.FALSE.,  
+ momTidalForcing=.FALSE.,
 #- not safe to use globalFiles in multi-processors runs
 #globalFiles=.TRUE.,
  useSingleCpuIO = .TRUE.,
@@ -53,13 +53,12 @@
 
 # Time stepping parameters
  &PARM03
- nIter0=0,
-# nTimeSteps=480,
+ startTime=0,
  endTime=903700,
-# endTime=10800,
  deltaT=50.,
  abEps=0.1,
- pChkptFreq=144000.0,
+# 3d:
+ pChkptFreq=259200.0,
  chkptFreq=0.,
  dumpFreq=0,
  dumpInitAndLast=.FALSE.
