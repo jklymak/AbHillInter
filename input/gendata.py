@@ -1,3 +1,4 @@
+
 import numpy as np
 
 import matplotlib
@@ -27,9 +28,14 @@ u0 = 10
 N0 = 1e-3
 f0 = 1.410e-4
 geo_beta = 5.9e-12
+wall = True
 #geo_beta = 0
-runname='Iso1km%sU%dAmp%df%03dB%03dWall'%(runtype, u0, amp, f0*1000000,
-                                     geo_beta*1e13)
+if wall:
+    suff = 'Wall'
+else:
+    suff = 'Base'
+runname='Iso1km%sU%dAmp%df%03dB%03d%s'%(runtype, u0, amp, f0*1000000,
+                                     geo_beta*1e13, suff)
 comments = 'Forward basic case'
 
 # to change U we need to edit external_forcing recompile
@@ -52,6 +58,7 @@ maxy =  128000.0
 # reset f0 in data
 shutil.copy('data', 'dataF')
 replace_data('dataF', 'f0', '%1.3e'%f0)
+replace_data('dataF', 'beta', '%1.3e'%geo_beta)
 
 replace_data('data.btforcing', 'btforcingU0', '%1.3e'%U0)
 
@@ -244,7 +251,8 @@ hlow = np.real(hlow - np.mean(hlow) + np.mean(h))
 
 d= hlow - H
 
-d[0, :] = 0.0
+if wall:
+    d[0, :] = 0.0
 
 with open(indir+"/topog.bin", "wb") as f:
   d.tofile(f)

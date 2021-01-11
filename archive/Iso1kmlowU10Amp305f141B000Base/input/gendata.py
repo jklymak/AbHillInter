@@ -112,6 +112,7 @@ if backupmodel:
     pass
 
   copy('gendata.py',outdir)
+  copy('moddata.py',outdir)
 else:
   outdir=outdir+'input/'
 
@@ -242,6 +243,8 @@ hlow = np.real(hlow - np.mean(hlow) + np.mean(h))
 #hlow = hlow * xenvelope[np.newaxis, :]
 
 d= hlow - H
+
+# d[0, :] = 0.0
 
 with open(indir+"/topog.bin", "wb") as f:
   d.tofile(f)

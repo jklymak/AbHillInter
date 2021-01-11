@@ -16,7 +16,7 @@
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
  f0=1.410e-04,
- beta=0.E-11,
+ beta=5.900e-12,
  eosType='LINEAR',
  tAlpha=2.E-4,
  sBeta =0.E-4,

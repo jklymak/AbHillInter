@@ -8,7 +8,7 @@ import sys
 f0 = 1.4e-4
 U0 = 0.1
 
-runname = 'Iso1kmlowU10Amp305f141B059Base'
+runname = 'Iso1kmlowU10Amp305f141B059Wall'
 
 print(sys.argv)
 if len(sys.argv) > 1:
@@ -37,9 +37,9 @@ for runname in runnames:
     work = xr.Dataset({'work': w})
     work['AreaS'] = ds['rAs'].sum(dim=('YG', 'XC'))
 
-    sl = ds.isel(YC=64, YG=64)
     with ProgressBar():
         work.to_netcdf(f'{out_dir}/work.nc')
+
+    sl = ds.isel(YC=64, YG=64, time=slice(-4,-1))
     with ProgressBar():
         sl.to_netcdf(f'{out_dir}/yslice.nc')
-    dsads
