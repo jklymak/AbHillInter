@@ -1,4 +1,5 @@
 
+
 import numpy as np
 
 import matplotlib
@@ -28,13 +29,17 @@ u0 = 10
 N0 = 1e-3
 f0 = 1.410e-4
 geo_beta = 5.9e-12
-wall = True
-#geo_beta = 0
+# geo_beta = 0
+wall = False
+patch=True
 if wall:
     suff = 'Wall'
 else:
     suff = 'Base'
-runname='Iso1km%sU%dAmp%df%03dB%03d%s'%(runtype, u0, amp, f0*1000000,
+
+if patch:
+    suff = 'Patch'
+runname='Iso3km%sU%dAmp%df%03dB%03d%s'%(runtype, u0, amp, f0*1000000,
                                      geo_beta*1e13, suff)
 comments = 'Forward basic case'
 
@@ -52,8 +57,8 @@ U0 = u0/100.
 # the maxx and maxy are for finer scale runs.
 dx0=100.
 dy0=100.
-maxx = 1248000.0
-maxy =  128000.0
+maxx = 6 * 80 * 3e3
+maxy =  8 * 50 * 3e3
 
 # reset f0 in data
 shutil.copy('data', 'dataF')
@@ -76,8 +81,8 @@ elif runtype=='low':
 
 
 # model size
-nx = 24 * 52
-ny = 2*64
+nx = 6 * 80
+ny = 8 * 50
 nz = 400
 
 _log.info('nx %d ny %d', nx, ny)
@@ -235,22 +240,26 @@ _log.info('maxx %f dx[0] %f maxx/dx %f nx %d', maxx, dx[0], maxx/dx[0], nx)
 _log.info('maxxy %f dy[0] %f maxy/dy %f ny %d', maxy, dy[0], maxy/dy[0], ny)
 
 h = np.real(h - np.min(h))
-#
-# put in an envelope?
 
-xenvelope = np.zeros(nx) + 0.07
-xenvelope[400:(nx-400)] = 1.
-ind = range(340,400)
-xenvelope[ind] = np.linspace(0.07, 1, len(ind))
-xenvelope[int(nx/2):] = xenvelope[:int(nx/2)][::-1]
 
-# hband = np.real(hband - np.mean(hband)+np.mean(h))
+
 hlow = np.real(hlow - np.mean(hlow) + np.mean(h))
-#h = h * xenvelope[np.newaxis, :]
-#hlow = hlow * xenvelope[np.newaxis, :]
 
-d= hlow - H
 
+
+xx = x - np.mean(x)
+yy = y - np.mean(y)
+X, Y = np.meshgrid(xx, yy)
+R = X**2 + Y**2
+centerx = 0
+centery = 0
+radius = 100e3
+env = X * 0
+env = np.exp(-(R/radius**2)**3)
+if patch:
+    hlow = hlow * env
+
+d= hlow  - H
 if wall:
     d[0, :] = 0.0
 
@@ -263,7 +272,6 @@ _log.info(np.shape(d))
 fig, ax = plt.subplots(2,1)
 _log.info('%s %s', np.shape(x), np.shape(d))
 ax[0].plot(x/1.e3,d[0,:].T)
-ax[0].plot(x/1.e3,xenvelope*1000-4000)
 
 pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,d,rasterized=True)
 fig.colorbar(pcm,ax=ax[1])

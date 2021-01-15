@@ -11,12 +11,18 @@ The version I'll use is the `btforcing` branch of my own fork.  https://github.c
   - base run, u ro east, beta plane
 - Iso1kmlowU10Amp305f141B000Base:
   - no beta
+- Wall on north side.
+
+
 
 ### Todo:
-- Wall on north side.
 - U = -0.1
 
+### To run:
 
+- in `intput`: `python gendata.py`
+- `source runAll.sh`
+  - this runs a chained set of 2-hr jobs (on koehr) in the background queue.  This will allow us to not use allocation.
 
 ## Contents:
 

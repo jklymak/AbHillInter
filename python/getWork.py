@@ -8,7 +8,7 @@ import sys
 f0 = 1.4e-4
 U0 = 0.1
 
-runname = 'Iso1kmlowU10Amp305f141B059Wall'
+runname = 'Iso3kmlowU10Amp305f141B059Patch'
 
 print(sys.argv)
 if len(sys.argv) > 1:
@@ -29,17 +29,28 @@ for runname in runnames:
     except:
         pass
 
-    ds = xm.open_mdsdataset(data_dir, prefix=['final', 'final2d'], endian="<")
-    print(ds)
-    w = (ds['VVEL'] * ds['hFacS'] * ds['rAs'] * f0 * U0 ).sum(dim=('YG', 'XC'))
-    w.attrs['Processing'] = 'made with getWork.py'
+    with xm.open_mdsdataset(data_dir, prefix=['spinup2d'], endian="<", geometry='cartesian') as ds:
+        ds = ds.isel(time=slice(-12, -1))
+        print('keys', ds.coords)
+        for k in ds.coords:
+            if k[:4] in ('hFac', 'mask'):
+                ds = ds.drop(k)
+        print(ds.time)
+        with ProgressBar():
+            ds.to_netcdf(f'{out_dir}/twod.nc')
 
-    work = xr.Dataset({'work': w})
-    work['AreaS'] = ds['rAs'].sum(dim=('YG', 'XC'))
+    if 1:
+        with xm.open_mdsdataset(data_dir, prefix=['final', 'final2d'], endian="<", geometry='cartesian') as ds:
+            print(ds)
+            w = (ds['VVEL'] * ds['hFacS'] * ds['rAs'] * f0 * U0 ).sum(dim=('YG', 'XC'))
+            w.attrs['Processing'] = 'made with getWork.py'
 
-    with ProgressBar():
-        work.to_netcdf(f'{out_dir}/work.nc')
+            work = xr.Dataset({'work': w})
+            work['AreaS'] = ds['rAs'].sum(dim=('YG', 'XC'))
 
-    sl = ds.isel(YC=64, YG=64, time=slice(-4,-1))
-    with ProgressBar():
-        sl.to_netcdf(f'{out_dir}/yslice.nc')
+            with ProgressBar():
+                work.to_netcdf(f'{out_dir}/work.nc')
+
+            sl = ds.isel(YC=64, YG=64, time=slice(-4,-1))
+            with ProgressBar():
+                sl.to_netcdf(f'{out_dir}/yslice.nc')
