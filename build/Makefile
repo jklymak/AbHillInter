@@ -1,7 +1,7 @@
 # Multithreaded + multi-processing makefile for:
 #    Linux koehr06 3.10.0-957.12.2.el7.x86_64 #1 SMP Fri Apr 19 21:09:07 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
 # This makefile was generated automatically on
-#    Fri Jan  8 18:36:19 UTC 2021
+#    Fri Feb 26 21:56:00 UTC 2021
 # by the command:
 #    ../../MITgcm/tools/genmake2 -optfile=../build_options/koehr -mods=../code/ -rootdir=../../MITgcm -mpi
 # executed by:
@@ -27,8 +27,8 @@
 
 ROOTDIR     = ../../MITgcm
 BUILDDIR    = .
-SOURCEDIRS  =  ../code/ $(ROOTDIR)/pkg/btforcing $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rbcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/eesupp/src $(ROOTDIR)/model/src
-INCLUDEDIRS =  ../code/ $(ROOTDIR)/pkg/btforcing $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rbcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/eesupp/inc $(ROOTDIR)/model/inc
+SOURCEDIRS  =  ../code/ $(ROOTDIR)/pkg/btforcing $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rbcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/pkg/var_bot_drag $(ROOTDIR)/eesupp/src $(ROOTDIR)/model/src
+INCLUDEDIRS =  ../code/ $(ROOTDIR)/pkg/btforcing $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rbcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/pkg/var_bot_drag $(ROOTDIR)/eesupp/inc $(ROOTDIR)/model/inc
 EXEDIR      = .
 EXECUTABLE  = $(EXEDIR)/mitgcmuv
 TOOLSDIR    = $(ROOTDIR)/tools
@@ -40,7 +40,7 @@ EXE_AD      = mitgcmuv_ad
 EXE_FTL     = mitgcmuv_ftl
 EXE_SVD     = mitgcmuv_svd
 
-ENABLED_PACKAGES =  -DALLOW_BTFORCING -DALLOW_DEBUG -DALLOW_DIAGNOSTICS -DALLOW_GENERIC_ADVDIFF -DALLOW_KL10 -DALLOW_MDSIO -DALLOW_MOM_COMMON -DALLOW_MOM_FLUXFORM -DALLOW_MOM_VECINV -DALLOW_MONITOR -DALLOW_RBCS -DALLOW_RW -DALLOW_TIMEAVE
+ENABLED_PACKAGES =  -DALLOW_BTFORCING -DALLOW_DEBUG -DALLOW_DIAGNOSTICS -DALLOW_GENERIC_ADVDIFF -DALLOW_KL10 -DALLOW_MDSIO -DALLOW_MOM_COMMON -DALLOW_MOM_FLUXFORM -DALLOW_MOM_VECINV -DALLOW_MONITOR -DALLOW_RBCS -DALLOW_RW -DALLOW_TIMEAVE -DALLOW_VAR_BOT_DRAG
 DISABLED_PACKAGES =  -UALLOW_ADMTLM -UALLOW_AIM_V23 -UALLOW_ATM2D -UALLOW_ATM_COMMON -UALLOW_ATM_COMPON_INTERF -UALLOW_ATM_OCN_COUPLER -UALLOW_ATM_PHYS -UALLOW_AUTODIFF -UALLOW_BBL -UALLOW_BLING -UALLOW_BULK_FORCE -UALLOW_CAL -UALLOW_CD_CODE -UALLOW_CFC -UALLOW_CHEAPAML -UALLOW_CHRONOS -UALLOW_COMPON_COMMUNIC -UALLOW_COST -UALLOW_CTRL -UALLOW_DIC -UALLOW_DOWN_SLOPE -UALLOW_EBM -UALLOW_ECCO -UALLOW_EMBED_FILES -UALLOW_EXCH2 -UALLOW_EXF -UALLOW_FIZHI -UALLOW_FLT -UALLOW_FRAZIL -UALLOW_GCHEM -UALLOW_GGL90 -UALLOW_GMREDI -UALLOW_GRDCHK -UALLOW_GRIDALT -UALLOW_ICEFRONT -UALLOW_KPP -UALLOW_LAND -UALLOW_LAYERS -UALLOW_LONGSTEP -UALLOW_MATRIX -UALLOW_MNC -UALLOW_MY82 -UALLOW_MYPACKAGE -UALLOW_OBCS -UALLOW_OCN_COMPON_INTERF -UALLOW_OFFLINE -UALLOW_OPENAD -UALLOW_OPPS -UALLOW_PP81 -UALLOW_PROFILES -UALLOW_PTRACERS -UALLOW_REGRID -UALLOW_RUNCLOCK -UALLOW_SALT_PLUME -UALLOW_SBO -UALLOW_SEAICE -UALLOW_SHAP_FILT -UALLOW_SHELFICE -UALLOW_SHOWFLOPS -UALLOW_SMOOTH -UALLOW_SPHERE -UALLOW_STREAMICE -UALLOW_THSICE -UALLOW_ZONAL_FILT
 
 # These files are created by Makefile
@@ -427,6 +427,9 @@ F77_SRC_FILES =  \
  timeave_statvars.F \
  timeave_statv_write.F \
  timeave_surf_flux.F \
+ var_bot_drag_init_fixed.F \
+ var_bot_drag_readparms.F \
+ var_bot_drag_tendency_apply.F \
  all_proc_die.F \
  bar2.F \
  bar_check.F \
@@ -957,6 +960,9 @@ NON_AD_F77_SRC_FILES =  \
  write_local_rs.F \
  write_rec.F \
  timeave_init_fixed.F \
+ var_bot_drag_init_fixed.F \
+ var_bot_drag_readparms.F \
+ var_bot_drag_tendency_apply.F \
  all_proc_die.F \
  bar2.F \
  bar_check.F \
@@ -1214,6 +1220,8 @@ H_SRC_FILES =  \
  RW_OPTIONS.h \
  TIMEAVE_OPTIONS.h \
  TIMEAVE_STATV.h \
+ VAR_BOT_DRAG.h \
+ VAR_BOT_DRAG_OPTIONS.h \
  BAR2.h \
  BARRIER.h \
  CPP_EEMACROS.h \
@@ -1372,9 +1380,9 @@ FC_NAMEMANGLE.h:
 
 BUILD_INFO.h:
 	@echo Creating $@ ...
-	-echo "#define THISVER 'checkpoint67u'" > $@
+	-echo "#define THISVER 'checkpoint67v'" > $@
 	-echo "#define THISUSER 'jklymak'" >> $@
-	-echo "#define THISDATE 'Fri Jan  8 18:36:19 UTC 2021'" >> $@
+	-echo "#define THISDATE 'Fri Feb 26 21:56:00 UTC 2021'" >> $@
 	-echo "#define THISHOST 'koehr06'" >> $@
 
 # The normal chain of rules is (  .F - .f - .o  )
@@ -1851,6 +1859,10 @@ fizhi_clockstuff.o: fizhi_clockstuff.f
 #  These files are linked from $(ROOTDIR)/pkg/timeave ( aka ../../MITgcm/pkg/timeave )
  timeave_cumul_1k1t.F timeave_cumul_1t.F timeave_cumul_1vfc.F timeave_cumul_2v.F timeave_cumul_2vfc.F timeave_cumulate.F timeave_cumul_dif_1t.F timeave_init_fixed.F timeave_norma_2v.F timeave_normalize.F TIMEAVE_OPTIONS.h timeave_reset.F timeave_statvars.F TIMEAVE_STATV.h timeave_statv_write.F timeave_surf_flux.F :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/timeave/$@ $@; fi
+
+#  These files are linked from $(ROOTDIR)/pkg/var_bot_drag ( aka ../../MITgcm/pkg/var_bot_drag )
+ VAR_BOT_DRAG.h var_bot_drag_init_fixed.F VAR_BOT_DRAG_OPTIONS.h var_bot_drag_readparms.F var_bot_drag_tendency_apply.F :
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/var_bot_drag/$@ $@; fi
 
 #  These files are linked from $(ROOTDIR)/eesupp/src ( aka ../../MITgcm/eesupp/src )
  all_proc_die.F bar2.F bar_check.F barrier.F check_threads.F comm_stats.F cumulsum_z_tile.F different_multiple.F diff_phase_multiple.F eeboot.F eeboot_minimal.F eedata_example.F eedie.F eeintro_msg.F eeset_parms.F eewrite_eeenv.F exch0_r4.F exch0_r8.F exch0_rl.F exch0_rs.F exch1_bg_r4_cube.F exch1_bg_r8_cube.F exch1_bg_rl_cube.F exch1_bg_rs_cube.F exch1_r4_cube.F exch1_r4.F exch1_r8_cube.F exch1_r8.F exch1_rl_ad.F exch1_rl_cube_ad.F exch1_rl_cube.F exch1_rl.F exch1_rs_ad.F exch1_rs_cube_ad.F exch1_rs_cube.F exch1_rs.F exch1_uv_r4_cube.F exch1_uv_r8_cube.F exch1_uv_rl_cube.F exch1_uv_rs_cube.F exch1_z_r4_cube.F exch1_z_r8_cube.F exch1_z_rl_cube.F exch1_z_rs_cube.F exch_3d_r4.F exch_3d_r8.F exch_3d_rl.F exch_3d_rs.F exch_cycle_ebl.F exch_init.F exch_r4_recv_get_x.F exch_r4_recv_get_y.F exch_r4_send_put_x.F exch_r4_send_put_y.F exch_r8_recv_get_x.F exch_r8_recv_get_y.F exch_r8_send_put_x.F exch_r8_send_put_y.F exch_rl_recv_get_x.F exch_rl_recv_get_y.F exch_rl_send_put_x.F exch_rl_send_put_y.F exch_rs_recv_get_x.F exch_rs_recv_get_y.F exch_rs_send_put_x.F exch_rs_send_put_y.F exch_s3d_r4.F exch_s3d_r8.F exch_s3d_rl.F exch_s3d_rs.F exch_sm_3d_r4.F exch_sm_3d_r8.F exch_sm_3d_rl.F exch_sm_3d_rs.F exch_uv_3d_r4.F exch_uv_3d_r8.F exch_uv_3d_rl.F exch_uv_3d_rs.F exch_uv_agrid_3d_r4.F exch_uv_agrid_3d_r8.F exch_uv_agrid_3d_rl.F exch_uv_agrid_3d_rs.F exch_uv_bgrid_3d_r4.F exch_uv_bgrid_3d_r8.F exch_uv_bgrid_3d_rl.F exch_uv_bgrid_3d_rs.F exch_uv_dgrid_3d_r4.F exch_uv_dgrid_3d_r8.F exch_uv_dgrid_3d_rl.F exch_uv_dgrid_3d_rs.F exch_uv_xy_r4.F exch_uv_xy_r8.F exch_uv_xy_rl.F exch_uv_xy_rs.F exch_uv_xyz_r4.F exch_uv_xyz_r8.F exch_uv_xyz_rl.F exch_uv_xyz_rs.F exch_xy_r4.F exch_xy_r8.F exch_xy_rl.F exch_xy_rs.F exch_xyz_r4.F exch_xyz_r8.F exch_xyz_rl.F exch_xyz_rs.F exch_z_3d_r4.F exch_z_3d_r8.F exch_z_3d_rl.F exch_z_3d_rs.F fill_cs_corner_ag_rl.F fill_cs_corner_tr_rl.F fill_cs_corner_uv_rl.F fill_cs_corner_uv_rs.F fool_the_compiler.F gather_2d_r4.F gather_2d_r8.F gather_2d_wh_r4.F gather_2d_wh_r8.F gather_vec_r4.F gather_vec_r8.F gather_xz.F gather_yz.F get_periodic_interval.F global_max.F global_sum.F global_sum_singlecpu.F global_sum_tile.F global_vec_sum.F gsl_ieee_env.c gsum.F ini_communication_patterns.F ini_procs.F ini_threading_environment.F lef_zero.F main.F master_cpu_io.F master_cpu_thread.F mds_byteswapi4.F mds_byteswapr4.F mds_byteswapr8.F mdsfindunit.F mds_flush.F mds_reclen.F memsync.F nml_change_syntax.F nml_set_terminator.F open_copy_data_file.F print.F ptwrapper.c reset_halo.F scatter_2d_r4.F scatter_2d_r8.F scatter_2d_wh_r4.F scatter_2d_wh_r8.F scatter_vec_r4.F scatter_vec_r8.F scatter_xz.F scatter_yz.F setdir.c setrlstk.c sigreg.c stop_if_error.F tim.c timers.F timer_stats.c utils.F write_utils.F eesupp.flow exch1_ad.flow :
@@ -6260,6 +6272,31 @@ update_surf_dr.f: TANPHIATU_MACROS.h TANPHIATV_MACROS.h
 update_surf_dr.f: /usr/include/stdc-predef.h XC_MACROS.h YC_MACROS.h
 utils.f: CPP_EEMACROS.h CPP_EEOPTIONS.h EEPARAMS.h SIZE.h
 utils.f: /usr/include/stdc-predef.h
+var_bot_drag_init_fixed.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h
+var_bot_drag_init_fixed.f: EEPARAMS.h PACKAGES_CONFIG.h PARAMS.h SIZE.h
+var_bot_drag_init_fixed.f: /usr/include/stdc-predef.h VAR_BOT_DRAG.h
+var_bot_drag_init_fixed.f: VAR_BOT_DRAG_OPTIONS.h
+var_bot_drag_readparms.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h
+var_bot_drag_readparms.f: EEPARAMS.h PACKAGES_CONFIG.h PARAMS.h SIZE.h
+var_bot_drag_readparms.f: /usr/include/stdc-predef.h VAR_BOT_DRAG.h
+var_bot_drag_readparms.f: VAR_BOT_DRAG_OPTIONS.h
+var_bot_drag_tendency_apply.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h
+var_bot_drag_tendency_apply.f: DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h
+var_bot_drag_tendency_apply.f: DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h
+var_bot_drag_tendency_apply.f: DYG_MACROS.h DYNVARS.h DYU_MACROS.h EEPARAMS.h
+var_bot_drag_tendency_apply.f: FCORI_MACROS.h GRID.h GRID_MACROS.h
+var_bot_drag_tendency_apply.f: HFACC_MACROS.h HFACS_MACROS.h HFACW_MACROS.h
+var_bot_drag_tendency_apply.f: MASKS_MACROS.h MASKW_MACROS.h PACKAGES_CONFIG.h
+var_bot_drag_tendency_apply.f: PARAMS.h RA_MACROS.h RAS_MACROS.h RAW_MACROS.h
+var_bot_drag_tendency_apply.f: RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h
+var_bot_drag_tendency_apply.f: RECIP_DXG_MACROS.h RECIP_DXV_MACROS.h
+var_bot_drag_tendency_apply.f: RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h
+var_bot_drag_tendency_apply.f: RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h
+var_bot_drag_tendency_apply.f: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
+var_bot_drag_tendency_apply.f: RECIP_HFACW_MACROS.h SIZE.h TANPHIATU_MACROS.h
+var_bot_drag_tendency_apply.f: TANPHIATV_MACROS.h /usr/include/stdc-predef.h
+var_bot_drag_tendency_apply.f: VAR_BOT_DRAG.h VAR_BOT_DRAG_OPTIONS.h
+var_bot_drag_tendency_apply.f: XC_MACROS.h YC_MACROS.h
 write_fld_3d_rl.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 write_fld_3d_rl.f: PACKAGES_CONFIG.h PARAMS.h RW_OPTIONS.h SIZE.h
 write_fld_3d_rl.f: /usr/include/stdc-predef.h

@@ -1,5 +1,3 @@
-
-
 import numpy as np
 
 import matplotlib
@@ -32,13 +30,17 @@ geo_beta = 5.9e-12
 # geo_beta = 0
 wall = False
 patch=True
+ndec = 100
 if wall:
     suff = 'Wall'
 else:
     suff = 'Base'
 
 if patch:
-    suff = 'Patch'
+    suff = f'Patch{ndec*5}'
+
+suff = 'RoughPatch100'
+
 runname='Iso3km%sU%dAmp%df%03dB%03d%s'%(runtype, u0, amp, f0*1000000,
                                      geo_beta*1e13, suff)
 comments = 'Forward basic case'
@@ -162,6 +164,10 @@ if 1:
       shutil.copy('data.kpp', outdir)
     except:
       pass
+    try:
+      shutil.copy('data.var_bot_drag', outdir)
+    except:
+      pass
     #shutil.copy('data.rbcs', outdir)
     try:
         shutil.copy('data.obcs', outdir)
@@ -241,11 +247,7 @@ _log.info('maxxy %f dy[0] %f maxy/dy %f ny %d', maxy, dy[0], maxy/dy[0], ny)
 
 h = np.real(h - np.min(h))
 
-
-
 hlow = np.real(hlow - np.mean(hlow) + np.mean(h))
-
-
 
 xx = x - np.mean(x)
 yy = y - np.mean(y)
@@ -259,7 +261,16 @@ env = np.exp(-(R/radius**2)**3)
 if patch:
     hlow = hlow * env
 
-d= hlow  - H
+hnew = hlow * 1.0
+for i in range(nx):
+    for j in range(ny):
+        #print(np.floor((i-2)/4) * 4)
+        ir = np.mod(i + np.arange(ndec)-ndec/2, nx).astype(int)
+        jr = np.mod(j + np.arange(ndec)-ndec/2, ny).astype(int)
+        hnew[j, i] = np.mean(hlow[jr,:][:, ir])
+
+
+d= hnew  - H
 if wall:
     d[0, :] = 0.0
 
@@ -337,7 +348,30 @@ with open(indir+"/Tforce.bin", "wb") as f:
     aa.tofile(f)
 f.close()
 
+################################
+# make drag co-efficients:
+qdrag = 0.0 * np.ones((ny, nx))
+ldrag = 0.0 * np.ones((ny, nx))
 
+hh = h * np.ones((ny, nx))
+hh = hh * env
+qdrag  = hh * np.pi**2 / 2 / 100e3
+ldrag  = hh**2 * np.pi / 2 / 100e3
+
+#X, Y = np.meshgrid(x, y)
+#R2 = X**2 + Y**2
+#ldrag[R2<10000**2] = 0.005
+fig, ax = plt.subplots()
+pc = ax.pcolormesh(ldrag)
+fig.colorbar(pc)
+with open(indir+"/DraguQuad.bin", "wb") as f:
+        qdrag.tofile(f)
+with open(indir+"/DragvQuad.bin", "wb") as f:
+        qdrag.tofile(f)
+with open(indir+"/DraguLin.bin", "wb") as f:
+        ldrag.tofile(f)
+with open(indir+"/DragvLin.bin", "wb") as f:
+        ldrag.tofile(f)
 
 ###### Manually make the directories
 #for aa in range(128):

@@ -8,7 +8,7 @@ import sys
 f0 = 1.4e-4
 U0 = 0.1
 
-runname = 'Iso3kmlowU10Amp305f141B059Patch'
+runname = 'Iso3kmlowU10Amp305f141B059Patch20'
 
 print(sys.argv)
 if len(sys.argv) > 1:
@@ -30,7 +30,7 @@ for runname in runnames:
         pass
 
     with xm.open_mdsdataset(data_dir, prefix=['spinup2d'], endian="<", geometry='cartesian') as ds:
-        ds = ds.isel(time=slice(-12, -1))
+        #ds = ds.isel(time=slice(-12, -1))
         print('keys', ds.coords)
         for k in ds.coords:
             if k[:4] in ('hFac', 'mask'):
@@ -39,6 +39,7 @@ for runname in runnames:
         with ProgressBar():
             ds.to_netcdf(f'{out_dir}/twod.nc')
 
+    
     if 1:
         with xm.open_mdsdataset(data_dir, prefix=['final', 'final2d'], endian="<", geometry='cartesian') as ds:
             print(ds)
