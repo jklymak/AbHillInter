@@ -276,6 +276,7 @@ if wall:
 
 with open(indir+"/topog.bin", "wb") as f:
   d.tofile(f)
+topo=d
 f.close()
 
 _log.info(np.shape(d))
@@ -353,7 +354,7 @@ f.close()
 qdrag = 0.0 * np.ones((ny, nx))
 ldrag = 0.0 * np.ones((ny, nx))
 
-hh = h * np.ones((ny, nx))
+hh = 2 * amp * np.ones((ny, nx))
 hh = hh * env
 qdrag  = hh * np.pi**2 / 2 / 100e3
 ldrag  = hh**2 * np.pi / 2 / 100e3
@@ -361,9 +362,12 @@ ldrag  = hh**2 * np.pi / 2 / 100e3
 #X, Y = np.meshgrid(x, y)
 #R2 = X**2 + Y**2
 #ldrag[R2<10000**2] = 0.005
-fig, ax = plt.subplots()
-pc = ax.pcolormesh(ldrag)
-fig.colorbar(pc)
+fig, ax = plt.subplots(2, 1)
+pc = ax[0].pcolormesh(ldrag, rasterized=True)
+fig.colorbar(pc, ax = ax[0])
+pc = ax[1].pcolormesh(qdrag, rasterized=True)
+fig.colorbar(pc, ax = ax[1])
+fig.savefig(outdir+'/figs/Drags.pdf')
 with open(indir+"/DraguQuad.bin", "wb") as f:
         qdrag.tofile(f)
 with open(indir+"/DragvQuad.bin", "wb") as f:
@@ -372,6 +376,25 @@ with open(indir+"/DraguLin.bin", "wb") as f:
         ldrag.tofile(f)
 with open(indir+"/DragvLin.bin", "wb") as f:
         ldrag.tofile(f)
+
+# make a file that spreads the stress...  Note sum fac*dz = 1
+
+dragfac = np.zeros((nz, ny, nx))
+for i in range(nx):
+    for j in range(ny):
+        ind = np.where((-z>=topo[j, i]) & (-z<=topo[j, i] + 300))[0]
+        if i==4 and j==4:
+            print(ind)
+        if len(ind) > 0:
+            dragfac[ind, j, i] = 1
+            sum = np.sum(dragfac[:, j, i] * dz[:])
+            dragfac[ind, j, i] =  dragfac[ind, j, i] / sum
+
+print(dragfac[:, 4, 4])
+
+with open(indir+"/BotDragFac.bin", "wb") as f:
+	dragfac.tofile(f)
+
 
 ###### Manually make the directories
 #for aa in range(128):

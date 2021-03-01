@@ -7,4 +7,5 @@
  useMNC=.TRUE.,
  useRBCS=.FALSE.,
  useBTFORCING=.TRUE.,
+ useVar_Bot_Drag=.TRUE.,
  /

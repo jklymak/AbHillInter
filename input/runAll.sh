@@ -1,6 +1,6 @@
 
 #!/bin/sh -l
-todo=Iso3kmlowU10Amp305f141B059Patch100
+todo=Iso3kmlowU10Amp305f141B059RoughPatch100
 
 day=86400
 dt=150
