@@ -2,7 +2,7 @@
 
 ##  MITGCM version
 
-The version I'll use is the `btforcing` branch of my own fork.  https://github.com/jklymak/MITgcm/
+The version I'll use is the `varbd_bt` branch of my own fork.  https://github.com/jklymak/MITgcm/
 
 
 ## Runs: koehr
