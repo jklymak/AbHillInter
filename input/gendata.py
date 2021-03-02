@@ -12,7 +12,6 @@ from maketopo import getTopo2D
 import logging
 from replace_data import replace_data
 
-
 logging.basicConfig(level=logging.INFO)
 
 _log = logging.getLogger(__name__)
@@ -356,7 +355,7 @@ ldrag = 0.0 * np.ones((ny, nx))
 
 hh = 2 * amp * np.ones((ny, nx))
 hh = hh * env
-qdrag  = hh * np.pi**2 / 2 / 100e3
+qdrag  = hh * np.pi**2 / 2 / 100e3 + 1e-3
 ldrag  = hh**2 * np.pi / 2 / 100e3
 
 #X, Y = np.meshgrid(x, y)

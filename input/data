@@ -55,7 +55,7 @@
  &PARM03
  startTime=0,
  endTime=903700,
- deltaT=50.,
+ deltaT=25.,
  abEps=0.1,
 # 3d:
  pChkptFreq=259200.0,
