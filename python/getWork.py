@@ -8,7 +8,7 @@ import sys
 f0 = 1.4e-4
 U0 = 0.1
 
-runname = 'Iso3kmlowU10Amp305f141B059Patch20'
+runname = 'Iso3kmlowU10Amp305f141B059MixRoughPatch100'
 
 print(sys.argv)
 if len(sys.argv) > 1:
@@ -37,11 +37,11 @@ for runname in runnames:
                 ds = ds.drop(k)
         print(ds.time)
         with ProgressBar():
-            ds.to_netcdf(f'{out_dir}/twod.nc')
+            ds.to_zarr(f'{out_dir}/twod.zarr', mode='w')
 
     
-    if 1:
-        with xm.open_mdsdataset(data_dir, prefix=['final', 'final2d'], endian="<", geometry='cartesian') as ds:
+    if 0:
+        with xm.open_mdsdataset(data_dir, prefix=['final'], endian="<", geometry='cartesian') as ds:
             print(ds)
             w = (ds['VVEL'] * ds['hFacS'] * ds['rAs'] * f0 * U0 ).sum(dim=('YG', 'XC'))
             w.attrs['Processing'] = 'made with getWork.py'
@@ -50,8 +50,8 @@ for runname in runnames:
             work['AreaS'] = ds['rAs'].sum(dim=('YG', 'XC'))
 
             with ProgressBar():
-                work.to_netcdf(f'{out_dir}/work.nc')
+                work.to_zarr(f'{out_dir}/work.zarr', mode='w')
 
             sl = ds.isel(YC=64, YG=64, time=slice(-4,-1))
             with ProgressBar():
-                sl.to_netcdf(f'{out_dir}/yslice.nc')
+                sl.to_zarr(f'{out_dir}/yslice.zarr', mode='w')

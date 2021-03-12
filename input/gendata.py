@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from shutil import copy
 from os import mkdir
 import shutil,os,glob
-import scipy.signal as scisig
+# import scipy.signal as scisig
 from maketopo import getTopo2D
 import logging
 from replace_data import replace_data
@@ -28,8 +28,8 @@ f0 = 1.410e-4
 geo_beta = 5.9e-12
 # geo_beta = 0
 wall = False
-patch=True
-ndec = 100
+patch = False
+ndec = 200
 if wall:
     suff = 'Wall'
 else:
@@ -38,7 +38,7 @@ else:
 if patch:
     suff = f'Patch{ndec*5}'
 
-suff = 'RoughPatch100'
+suff = 'AllRough600Block'
 
 runname='Iso3km%sU%dAmp%df%03dB%03d%s'%(runtype, u0, amp, f0*1000000,
                                      geo_beta*1e13, suff)
@@ -67,7 +67,6 @@ replace_data('dataF', 'f0', '%1.3e'%f0)
 replace_data('dataF', 'beta', '%1.3e'%geo_beta)
 
 replace_data('data.btforcing', 'btforcingU0', '%1.3e'%U0)
-
 
 # topography parameters:
 useFiltTop=False
@@ -255,18 +254,20 @@ R = X**2 + Y**2
 centerx = 0
 centery = 0
 radius = 100e3
-env = X * 0
-env = np.exp(-(R/radius**2)**3)
+env = 1    
 if patch:
-    hlow = hlow * env
+  env = X * 0
+  env = np.exp(-(R/radius**2)**3)
+hlow = hlow * env
 
 hnew = hlow * 1.0
-for i in range(nx):
-    for j in range(ny):
-        #print(np.floor((i-2)/4) * 4)
-        ir = np.mod(i + np.arange(ndec)-ndec/2, nx).astype(int)
-        jr = np.mod(j + np.arange(ndec)-ndec/2, ny).astype(int)
-        hnew[j, i] = np.mean(hlow[jr,:][:, ir])
+if ndec > 0:
+  for i in range(nx):
+      for j in range(ny):
+          #print(np.floor((i-2)/4) * 4)
+          ir = np.mod(i + np.arange(ndec)-ndec/2, nx).astype(int)
+          jr = np.mod(j + np.arange(ndec)-ndec/2, ny).astype(int)
+          hnew[j, i] = np.mean(hlow[jr,:][:, ir])
 
 
 d= hnew  - H
@@ -355,8 +356,8 @@ ldrag = 0.0 * np.ones((ny, nx))
 
 hh = 2 * amp * np.ones((ny, nx))
 hh = hh * env
-qdrag  = hh * np.pi**2 / 2 / 100e3 + 1e-3
-ldrag  = hh**2 * np.pi / 2 / 100e3
+qdrag  = hh * np.pi**2 / 2 / 100e3
+ldrag  = hh**2 * np.pi / 2 / 100e3 * N0
 
 #X, Y = np.meshgrid(x, y)
 #R2 = X**2 + Y**2
@@ -366,30 +367,42 @@ pc = ax[0].pcolormesh(ldrag, rasterized=True)
 fig.colorbar(pc, ax = ax[0])
 pc = ax[1].pcolormesh(qdrag, rasterized=True)
 fig.colorbar(pc, ax = ax[1])
-fig.savefig(outdir+'/figs/Drags.pdf')
+fig.savefig(outdir+'/figs/Drags.png')
 with open(indir+"/DraguQuad.bin", "wb") as f:
-        qdrag.tofile(f)
+    qdrag.tofile(f)
 with open(indir+"/DragvQuad.bin", "wb") as f:
-        qdrag.tofile(f)
+    qdrag.tofile(f)
 with open(indir+"/DraguLin.bin", "wb") as f:
-        ldrag.tofile(f)
+    ldrag.tofile(f)
 with open(indir+"/DragvLin.bin", "wb") as f:
-        ldrag.tofile(f)
+    ldrag.tofile(f)
 
 # make a file that spreads the stress...  Note sum fac*dz = 1
 
 dragfac = np.zeros((nz, ny, nx))
 for i in range(nx):
     for j in range(ny):
-        ind = np.where((-z>=topo[j, i]) & (-z<=topo[j, i] + 300))[0]
-        if i==4 and j==4:
-            print(ind)
+      if False:
+        ind = np.where((-z>=topo[j, i]))[0]
         if len(ind) > 0:
-            dragfac[ind, j, i] = 1
-            sum = np.sum(dragfac[:, j, i] * dz[:])
-            dragfac[ind, j, i] =  dragfac[ind, j, i] / sum
+            dragfac[ind, j, i] = np.exp((z[ind] + topo[j, i]) / 300.)
+            dsum = np.sum(dragfac[:, j, i] * dz[:])
+            dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
+      elif True:
+        ind = np.where((-z>=topo[j, i]) & (-z<=topo[j, i]+300))[0]
+        if len(ind) > 0:
+            dragfac[ind, j, i] = 1.0
+            dsum = np.sum(dragfac[:, j, i] * dz[:])
+            dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
+      else:
+        ind = np.where((-z>=topo[j, i]))[0]
+        if len(ind) > 0:
+            dragfac[ind[-1], j, i] = 1.0
+            dsum = np.sum(dragfac[:, j, i] * dz[:])
+            dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
 
 print(dragfac[:, 4, 4])
+print(np.sum(dragfac[:, 4, 4]*dz[:]))
 
 with open(indir+"/BotDragFac.bin", "wb") as f:
 	dragfac.tofile(f)

@@ -1,22 +1,24 @@
-#!/bin/sh -l
-#PBS -m be
-#PBS -M jklymak@gmail.com
-#PBS -l select=1:ncpus=48:mpiprocs=48
-#PBS -l walltime=02:40:00
-#PBS -q background
-#PBS -A ONRDC35552400
-#PBS -j oe
-#PBS -N ${JOBNAME}
+#!/bin/bash
+#SBATCH --account=def-jklymak
+#SBATCH --mail-user=jklymak@gmail.com
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=48
+#SBATCH --time=0-02:00
+#SBATCH --mem=0
+#SBATCH --constraint=[skylake|cascade]
 
 # run from runAll.sh  start and stop come from -v arguments.
 
 module swap mpt compiler/intelmpi
 
+PARENT=AbHillInter
+
 cd $PBS_O_WORKDIR
 
 PARENT=AbHillInter
-top=${PBS_JOBNAME}
-results=${WORKDIR}/${PARENT}/
+top=${SLURM_JOB_NAME}
+results=${PROJECT}/jklymak/${PARENT}/results/
 outdir=$results$top
 
 cd $outdir/input
@@ -26,4 +28,4 @@ ls -al ../build/mitgcmuv
 python moddata.py --startTime=$start --endTime=$stop --deltaT=$dt
 
 printf "Starting: $outdir\n"
-mpirun -np 48 ../build/mitgcmuv > mit.out
+mpiexec -N 48 ../build/mitgcmuv > mit.out

@@ -1,10 +1,4 @@
 #!/bin/bash
-#
-# $Header$
-# $Name$
-
-# run: module load gcc openmpi
-
 # Tested on uv100.awi.de (SGI UV 100, details:
 #                         http://www.sgi.com/products/servers/uv/specs.html)
 # a) For more speed, provided your data size does not exceed 2GB you can
@@ -30,14 +24,13 @@ F90FIXEDFORMAT='-fixed -Tf'
 EXTENDED_SRC_FLAG='-132'
 #OMPFLAG='-openmp'
 
-NOOPTFLAGS="-O0 -g -m64"
 NOOPTFILES=''
 
 # MCMODEL='-fPIC'
 # for large memory requirements uncomment this line
 MCMODEL='-mcmodel=medium'
 
-FFLAGS="$FFLAGS $MCMODEL"
+FFLAGS="$FFLAGS $MCMODEL -assume byterecl"
 #- might want to use '-r8' for fizhi pkg:
 #FFLAGS="$FFLAGS -r8"
 

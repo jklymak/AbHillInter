@@ -34,12 +34,14 @@ for runname in runnames:
 
     if 1:
         with xm.open_mdsdataset(data_dir, prefix=['means'], endian="<", geometry='cartesian') as ds:
+            #ds = ds.chunk(chunks={'time':1, 'Z':10})
             print(ds)
             w = (ds['VVEL'] * ds['hFacS'] * ds['rAs'] * f0 * U0 ).sum(dim=('YG', 'XC'))
             w.attrs['Processing'] = 'made with getMeanVel.py'
 
             work = xr.Dataset({'work': w})
-            work['AreaS'] = ds['rAs'].sum(dim=('YG', 'XC'))
-
+            work['AreaS'] = ds['rAs'].sum(dim=('YG', 'XC')).values
+            print(work)
+            # print(work.load())
             with ProgressBar():
-                work.to_netcdf(f'{out_dir}/workMean.nc')
+                work.to_zarr(f'{out_dir}/workMean.zarr', mode='w')
