@@ -1,0 +1,53 @@
+/home/jklymak/project/jklymak/AbHillInter/python
+['getMeanVel.py', 'Iso3kmlowU10Amp305f141B059AllRough']
+processing ../results/Iso3kmlowU10Amp305f141B059AllRough/input/Iso3kmlowU10Amp305f141B059AllRough
+Writing to ../reduceddata/Iso3kmlowU10Amp305f141B059AllRough/
+<xarray.Dataset>
+Dimensions:  (XC: 480, XG: 480, YC: 400, YG: 400, Z: 400, Zl: 400, Zp1: 401, Zu: 400, time: 6)
+Coordinates: (12/36)
+  * XC       (XC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.436e+06 1.438e+06
+  * YC       (YC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.196e+06 1.198e+06
+  * XG       (XG) float64 0.0 3e+03 6e+03 ... 1.431e+06 1.434e+06 1.437e+06
+  * YG       (YG) float64 0.0 3e+03 6e+03 ... 1.191e+06 1.194e+06 1.197e+06
+  * Z        (Z) float64 -5.0 -15.0 -25.0 ... -3.975e+03 -3.985e+03 -3.995e+03
+  * Zp1      (Zp1) float64 0.0 -10.0 -20.0 -30.0 ... -3.98e+03 -3.99e+03 -4e+03
+    ...       ...
+    rLowS    (YG, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rhoRef   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    rLowW    (YC, XG) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rLowC    (YC, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 2 days 4 days 6 days 8 days 10 days 12 days
+Data variables:
+    VVEL     (time, Z, YG, XC) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+    UVEL     (time, Z, YC, XG) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+    THETA    (time, Z, YC, XC) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+<xarray.Dataset>
+Dimensions:  (Z: 400, time: 6)
+Coordinates:
+  * Z        (Z) float64 -5.0 -15.0 -25.0 ... -3.975e+03 -3.985e+03 -3.995e+03
+    drF      (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    PHrefC   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    rhoRef   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 2 days 4 days 6 days 8 days 10 days 12 days
+Data variables:
+    work     (time, Z) float64 dask.array<chunksize=(1, 400), meta=np.ndarray>
+    AreaS    float64 1.728e+12
+Traceback (most recent call last):
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xarray/core/common.py", line 268, in __setattr__
+    object.__setattr__(self, name, value)
+AttributeError: 'Dataset' object has no attribute 'meanU'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "getMeanVel.py", line 46, in <module>
+    work.meanU = work.meanU / work.AreaS
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xarray/core/common.py", line 276, in __setattr__
+    raise AttributeError(
+AttributeError: cannot set attribute 'meanU' on a 'Dataset' object. Use __setitem__ styleassignment (e.g., `ds['name'] = ...`) instead of assigning variables.
+building file list ... done
+
+sent 44,209 bytes  received 20 bytes  2,268.15 bytes/sec
+total size is 628,205,786  speedup is 14,203.48

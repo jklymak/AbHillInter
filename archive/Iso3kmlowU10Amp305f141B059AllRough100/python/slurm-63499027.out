@@ -1,0 +1,282 @@
+/home/jklymak/project/jklymak/AbHillInter/python
+['getWork.py', 'Iso3kmlowU10Amp305f141B059MixRoughPatch100']
+processing ../results/Iso3kmlowU10Amp305f141B059MixRoughPatch100/input/Iso3kmlowU10Amp305f141B059MixRoughPatch100
+Writing to ../reduceddata/Iso3kmlowU10Amp305f141B059MixRoughPatch100/
+keys Coordinates: (12/36)
+  * XC       (XC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.436e+06 1.438e+06
+  * YC       (YC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.196e+06 1.198e+06
+  * XG       (XG) float64 0.0 3e+03 6e+03 ... 1.431e+06 1.434e+06 1.437e+06
+  * YG       (YG) float64 0.0 3e+03 6e+03 ... 1.191e+06 1.194e+06 1.197e+06
+  * Z        (Z) float64 -5.0 -15.0 -25.0 ... -3.975e+03 -3.985e+03 -3.995e+03
+  * Zp1      (Zp1) float64 0.0 -10.0 -20.0 -30.0 ... -3.98e+03 -3.99e+03 -4e+03
+    ...       ...
+    rLowS    (YG, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rhoRef   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    rLowW    (YC, XG) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rLowC    (YC, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 0 days 1 days 2 days ... 35 days 36 days
+<xarray.DataArray 'time' (time: 37)>
+array([               0,   86400000000000,  172800000000000,  259200000000000,
+        345600000000000,  432000000000000,  518400000000000,  604800000000000,
+        691200000000000,  777600000000000,  864000000000000,  950400000000000,
+       1036800000000000, 1123200000000000, 1209600000000000, 1296000000000000,
+       1382400000000000, 1468800000000000, 1555200000000000, 1641600000000000,
+       1728000000000000, 1814400000000000, 1900800000000000, 1987200000000000,
+       2073600000000000, 2160000000000000, 2246400000000000, 2332800000000000,
+       2419200000000000, 2505600000000000, 2592000000000000, 2678400000000000,
+       2764800000000000, 2851200000000000, 2937600000000000, 3024000000000000,
+       3110400000000000], dtype='timedelta64[ns]')
+Coordinates:
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 0 days 1 days 2 days ... 35 days 36 days
+Attributes:
+    standard_name:  time
+    long_name:      Time
+    axis:           T
+    calendar:       gregorian
+[                                        ] | 0% Completed |  0.0s[##                                      ] | 6% Completed |  2.9s[#####                                   ] | 12% Completed |  3.0s[########                                ] | 22% Completed |  3.2s[#############                           ] | 33% Completed |  3.3s[##############                          ] | 36% Completed |  3.4s[###############                         ] | 38% Completed |  3.5s[###############                         ] | 39% Completed |  3.6s[################                        ] | 40% Completed |  4.0s[###################                     ] | 47% Completed |  4.1s[###################                     ] | 48% Completed |  4.2s[###################                     ] | 48% Completed |  4.3s[####################                    ] | 51% Completed |  4.9s[#############################           ] | 73% Completed |  5.0s[#############################           ] | 74% Completed |  5.1s[#############################           ] | 74% Completed |  5.2s[#############################           ] | 74% Completed |  5.3s[#############################           ] | 74% Completed |  5.4s[#############################           ] | 74% Completed |  5.5s[##############################          ] | 77% Completed |  6.0s[#################################       ] | 84% Completed |  6.1s[#################################       ] | 84% Completed |  6.2s[#################################       ] | 84% Completed |  6.3s[##################################      ] | 85% Completed |  6.4s[##################################      ] | 85% Completed |  6.5s[##################################      ] | 85% Completed |  6.6s[###################################     ] | 87% Completed | 10.8s[###################################     ] | 89% Completed | 17.1s[######################################  ] | 96% Completed | 17.2s[######################################  ] | 96% Completed | 17.3s[######################################  ] | 96% Completed | 17.4s[######################################  ] | 96% Completed | 17.5s[######################################  ] | 96% Completed | 17.6s[######################################  ] | 96% Completed | 17.7s[######################################  ] | 96% Completed | 17.8s[######################################  ] | 96% Completed | 17.9s[######################################  ] | 96% Completed | 18.0s[######################################  ] | 96% Completed | 18.1s[######################################  ] | 96% Completed | 18.2s[####################################### ] | 98% Completed | 18.3s[########################################] | 100% Completed | 18.4s
+building file list ... done
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/.zgroup
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Depth/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Depth/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Depth/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Depth/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/0.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/1.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/10.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/11.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/12.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/13.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/14.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/15.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/16.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/17.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/18.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/19.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/2.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/20.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/21.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/22.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/23.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/24.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/25.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/26.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/27.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/28.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/29.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/3.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/30.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/31.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/32.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/33.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/34.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/35.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/36.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/4.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/5.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/6.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/7.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/8.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/ETAN/9.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/0.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/1.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/10.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/11.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/12.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/13.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/14.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/15.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/16.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/17.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/18.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/19.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/2.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/20.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/21.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/22.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/23.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/24.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/25.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/26.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/27.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/28.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/29.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/3.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/30.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/31.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/32.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/33.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/34.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/35.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/36.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/4.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/5.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/6.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/7.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/8.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHIBOT/9.0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHrefC/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHrefC/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHrefC/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHrefC/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHrefF/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHrefF/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHrefF/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/PHrefF/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/XC/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/XC/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/XC/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/XC/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/XG/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/XG/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/XG/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/XG/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/YC/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/YC/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/YC/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/YC/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/YG/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/YG/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/YG/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/YG/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Z/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Z/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Z/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Z/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zl/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zl/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zl/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zl/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zp1/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zp1/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zp1/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zp1/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zu/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zu/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zu/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/Zu/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/drC/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/drC/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/drC/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/drC/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/drF/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/drF/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/drF/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/drF/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dxC/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dxC/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dxC/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dxC/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dxG/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dxG/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dxG/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dxG/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dyC/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dyC/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dyC/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dyC/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dyG/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dyG/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dyG/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/dyG/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/1
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/10
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/11
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/12
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/13
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/14
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/15
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/16
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/17
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/18
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/19
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/2
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/20
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/21
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/22
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/23
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/24
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/25
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/26
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/27
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/28
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/29
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/3
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/30
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/31
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/32
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/33
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/34
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/35
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/36
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/4
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/5
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/6
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/7
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/8
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/iter/9
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rA/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rA/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rA/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rA/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAs/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAs/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAs/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAs/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAw/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAw/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAw/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAw/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAz/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAz/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAz/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rAz/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowC/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowC/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowC/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowC/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowS/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowS/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowS/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowS/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowW/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowW/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowW/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rLowW/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfC/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfC/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfC/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfC/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfS/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfS/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfS/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfS/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfW/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfW/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfW/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rSurfW/0.0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rhoRef/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rhoRef/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rhoRef/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/rhoRef/0
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/time/
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/time/.zarray
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/time/.zattrs
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/twod.zarr/time/0
+
+sent 63,182,875 bytes  received 413,884 bytes  6,694,395.68 bytes/sec
+total size is 369,529,258  speedup is 5.81

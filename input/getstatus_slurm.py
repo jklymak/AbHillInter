@@ -6,7 +6,7 @@ os.system('sq')
 out=subprocess.check_output('squeue -h -t RUNNING -u jklymak --Format="Name:50"', 
                             shell=True, text=True)
 out = out.splitlines()
-print(out)
+# print(out)
 for dd in out:
     dd = dd.strip()
     os.system(f"grep -E 'advcfl_wvel_max|time_seconds|dynstat_uvel_max' ../results/{dd}/input/STDOUT.0000 | tail -n 9")

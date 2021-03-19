@@ -1,0 +1,286 @@
+/home/jklymak/project/jklymak/AbHillInter/python
+['getWork.py', 'Iso3kmlowU10Amp305f141B059AllRough600ConsNsq']
+processing ../results/Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/input/Iso3kmlowU10Amp305f141B059AllRough600ConsNsq
+Writing to ../reduceddata/Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/
+keys Coordinates: (12/36)
+  * XC       (XC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.436e+06 1.438e+06
+  * YC       (YC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.196e+06 1.198e+06
+  * XG       (XG) float64 0.0 3e+03 6e+03 ... 1.431e+06 1.434e+06 1.437e+06
+  * YG       (YG) float64 0.0 3e+03 6e+03 ... 1.191e+06 1.194e+06 1.197e+06
+  * Z        (Z) float64 -5.0 -15.0 -25.0 ... -3.975e+03 -3.985e+03 -3.995e+03
+  * Zp1      (Zp1) float64 0.0 -10.0 -20.0 -30.0 ... -3.98e+03 -3.99e+03 -4e+03
+    ...       ...
+    rLowS    (YG, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rhoRef   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    rLowW    (YC, XG) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rLowC    (YC, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 0 days 1 days 2 days ... 11 days 12 days
+<xarray.DataArray 'time' (time: 13)>
+array([               0,   86400000000000,  172800000000000,  259200000000000,
+        345600000000000,  432000000000000,  518400000000000,  604800000000000,
+        691200000000000,  777600000000000,  864000000000000,  950400000000000,
+       1036800000000000], dtype='timedelta64[ns]')
+Coordinates:
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 0 days 1 days 2 days ... 11 days 12 days
+Attributes:
+    standard_name:  time
+    long_name:      Time
+    axis:           T
+    calendar:       gregorian
+[                                        ] | 0% Completed |  0.0s[#######                                 ] | 18% Completed |  0.4s[##############                          ] | 36% Completed |  0.6s[###################################     ] | 87% Completed |  0.7s[#####################################   ] | 93% Completed |  0.8s[#####################################   ] | 94% Completed |  0.9s[#####################################   ] | 94% Completed |  1.0s[#####################################   ] | 94% Completed |  1.1s[#####################################   ] | 94% Completed |  1.2s[#####################################   ] | 94% Completed |  1.3s[#####################################   ] | 94% Completed |  1.4s[#####################################   ] | 94% Completed |  1.5s[#####################################   ] | 94% Completed |  1.6s[#####################################   ] | 94% Completed |  1.7s[######################################  ] | 95% Completed |  1.8s[######################################  ] | 95% Completed |  1.9s[######################################  ] | 95% Completed |  2.0s[######################################  ] | 95% Completed |  2.1s[######################################  ] | 95% Completed |  2.2s[######################################  ] | 95% Completed |  2.3s[######################################  ] | 95% Completed |  2.4s[######################################  ] | 95% Completed |  2.5s[######################################  ] | 95% Completed |  2.6s[########################################] | 100% Completed |  2.7s
+['getMeanVel.py', 'Iso3kmlowU10Amp305f141B059AllRough600ConsNsq']
+processing ../results/Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/input/Iso3kmlowU10Amp305f141B059AllRough600ConsNsq
+Writing to ../reduceddata/Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/
+<xarray.Dataset>
+Dimensions:  (XC: 480, XG: 480, YC: 400, YG: 400, Z: 400, Zl: 400, Zp1: 401, Zu: 400, time: 6)
+Coordinates: (12/36)
+  * XC       (XC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.436e+06 1.438e+06
+  * YC       (YC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.196e+06 1.198e+06
+  * XG       (XG) float64 0.0 3e+03 6e+03 ... 1.431e+06 1.434e+06 1.437e+06
+  * YG       (YG) float64 0.0 3e+03 6e+03 ... 1.191e+06 1.194e+06 1.197e+06
+  * Z        (Z) float64 -5.0 -15.0 -25.0 ... -3.975e+03 -3.985e+03 -3.995e+03
+  * Zp1      (Zp1) float64 0.0 -10.0 -20.0 -30.0 ... -3.98e+03 -3.99e+03 -4e+03
+    ...       ...
+    rLowS    (YG, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rhoRef   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    rLowW    (YC, XG) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rLowC    (YC, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 2 days 4 days 6 days 8 days 10 days 12 days
+Data variables:
+    VVEL     (time, Z, YG, XC) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+    UVEL     (time, Z, YC, XG) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+    THETA    (time, Z, YC, XC) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+<xarray.Dataset>
+Dimensions:  (Z: 400, time: 6)
+Coordinates:
+  * Z        (Z) float64 -5.0 -15.0 -25.0 ... -3.975e+03 -3.985e+03 -3.995e+03
+    drF      (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    PHrefC   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    rhoRef   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 2 days 4 days 6 days 8 days 10 days 12 days
+Data variables:
+    work     (time, Z) float64 dask.array<chunksize=(1, 400), meta=np.ndarray>
+    AreaS    float64 1.728e+12
+[                                        ] | 0% Completed |  0.0s[#############                           ] | 34% Completed |  0.2s[#############                           ] | 34% Completed |  0.3s[#############                           ] | 34% Completed |  0.4s[#############                           ] | 34% Completed |  0.5s[#############                           ] | 34% Completed |  0.6s[#############                           ] | 34% Completed |  0.7s[#############                           ] | 34% Completed |  0.8s[#############                           ] | 34% Completed |  0.9s[#############                           ] | 34% Completed |  1.0s[#############                           ] | 34% Completed |  1.1s[#############                           ] | 34% Completed |  1.2s[#############                           ] | 34% Completed |  1.3s[#############                           ] | 34% Completed |  1.4s[#############                           ] | 34% Completed |  1.5s[#############                           ] | 34% Completed |  1.6s[#############                           ] | 34% Completed |  1.7s[#############                           ] | 34% Completed |  1.8s[#############                           ] | 34% Completed |  1.9s[#############                           ] | 34% Completed |  2.0s[#############                           ] | 34% Completed |  2.1s[#############                           ] | 34% Completed |  2.3s[#############                           ] | 34% Completed |  2.4s[#############                           ] | 34% Completed |  2.5s[#############                           ] | 34% Completed |  2.6s[#############                           ] | 34% Completed |  2.7s[#############                           ] | 34% Completed |  2.8s[#############                           ] | 34% Completed |  2.9s[#############                           ] | 34% Completed |  3.0s[#############                           ] | 34% Completed |  3.1s[#############                           ] | 34% Completed |  3.2s[#############                           ] | 34% Completed |  3.3s[#############                           ] | 34% Completed |  3.4s[#############                           ] | 34% Completed |  3.5s[#############                           ] | 34% Completed |  3.6s[#############                           ] | 34% Completed |  3.7s[#############                           ] | 34% Completed |  3.8s[#############                           ] | 34% Completed |  3.9s[#############                           ] | 34% Completed |  4.0s[#############                           ] | 34% Completed |  4.1s[#############                           ] | 34% Completed |  4.3s[#############                           ] | 34% Completed |  4.4s[#############                           ] | 34% Completed |  4.5s[#############                           ] | 34% Completed |  4.6s[#############                           ] | 34% Completed |  4.7s[#############                           ] | 34% Completed |  4.8s[#############                           ] | 34% Completed |  4.9s[#############                           ] | 34% Completed |  5.0s[#############                           ] | 34% Completed |  5.1s[#############                           ] | 34% Completed |  5.2s[#############                           ] | 34% Completed |  5.3s[#############                           ] | 34% Completed |  5.4s[#############                           ] | 34% Completed |  5.5s[#############                           ] | 34% Completed |  5.6s[#############                           ] | 34% Completed |  5.7s[#############                           ] | 34% Completed |  5.8s[#############                           ] | 34% Completed |  5.9s[#############                           ] | 34% Completed |  6.0s[#############                           ] | 34% Completed |  6.1s[#############                           ] | 34% Completed |  6.2s[#############                           ] | 34% Completed |  6.3s[#############                           ] | 34% Completed |  6.4s[#############                           ] | 34% Completed |  6.5s[#############                           ] | 34% Completed |  6.6s[#############                           ] | 34% Completed |  6.7s[###############                         ] | 38% Completed |  6.8s[###############                         ] | 38% Completed |  6.9s[###############                         ] | 38% Completed |  7.0s[###############                         ] | 38% Completed |  7.1s[###############                         ] | 38% Completed |  7.2s[###############                         ] | 38% Completed |  7.3s[###############                         ] | 38% Completed |  7.4s[###############                         ] | 38% Completed |  7.5s[###############                         ] | 38% Completed |  7.6s[################                        ] | 42% Completed |  7.7s[####################                    ] | 50% Completed |  7.8s[#######################                 ] | 57% Completed |  7.9s[########################                ] | 62% Completed |  8.0s[########################                ] | 62% Completed |  8.1s[########################                ] | 62% Completed |  8.2s[########################                ] | 62% Completed |  8.3s[########################                ] | 62% Completed |  8.4s[########################                ] | 62% Completed |  8.5s[########################                ] | 62% Completed |  8.6s[########################                ] | 62% Completed |  8.7s[########################                ] | 62% Completed |  8.8s[########################                ] | 62% Completed |  8.9s[########################                ] | 62% Completed |  9.0s[########################                ] | 62% Completed |  9.1s[########################                ] | 62% Completed |  9.2s[########################                ] | 62% Completed |  9.3s[########################                ] | 62% Completed |  9.4s[########################                ] | 62% Completed |  9.5s[########################                ] | 62% Completed |  9.6s[########################                ] | 62% Completed |  9.7s[########################                ] | 62% Completed |  9.8s[########################                ] | 62% Completed |  9.9s[########################                ] | 62% Completed | 10.0s[########################                ] | 62% Completed | 10.1s[########################                ] | 62% Completed | 10.2s[########################                ] | 62% Completed | 10.3s[########################                ] | 62% Completed | 10.4s[########################                ] | 62% Completed | 10.5s[########################                ] | 62% Completed | 10.6s[########################                ] | 62% Completed | 10.7s[########################                ] | 62% Completed | 10.8s[########################                ] | 62% Completed | 10.9s[########################                ] | 62% Completed | 11.0s[########################                ] | 62% Completed | 11.1s[########################                ] | 62% Completed | 11.2s[########################                ] | 62% Completed | 11.3s[########################                ] | 62% Completed | 11.4s[########################                ] | 62% Completed | 11.5s[########################                ] | 62% Completed | 11.6s[########################                ] | 62% Completed | 11.7s[########################                ] | 62% Completed | 11.8s[########################                ] | 62% Completed | 11.9s[########################                ] | 62% Completed | 12.0s[########################                ] | 62% Completed | 12.1s[########################                ] | 62% Completed | 12.2s[########################                ] | 62% Completed | 12.3s[########################                ] | 62% Completed | 12.4s[########################                ] | 62% Completed | 12.5s[########################                ] | 62% Completed | 12.7s[########################                ] | 62% Completed | 12.8s[########################                ] | 62% Completed | 12.9s[########################                ] | 62% Completed | 13.0s[########################                ] | 62% Completed | 13.1s[########################                ] | 62% Completed | 13.2s[########################                ] | 62% Completed | 13.3s[########################                ] | 62% Completed | 13.4s[########################                ] | 62% Completed | 13.5s[########################                ] | 62% Completed | 13.6s[########################                ] | 62% Completed | 13.7s[########################                ] | 62% Completed | 13.8s[########################                ] | 62% Completed | 13.9s[########################                ] | 62% Completed | 14.0s[########################                ] | 62% Completed | 14.1s[########################                ] | 62% Completed | 14.2s[########################                ] | 62% Completed | 14.3s[########################                ] | 62% Completed | 14.4s[########################                ] | 62% Completed | 14.5s[########################                ] | 62% Completed | 14.6s[########################                ] | 62% Completed | 14.7s[########################                ] | 62% Completed | 14.8s[########################                ] | 62% Completed | 14.9s[########################                ] | 62% Completed | 15.0s[########################                ] | 62% Completed | 15.1s[########################                ] | 62% Completed | 15.2s[########################                ] | 62% Completed | 15.3s[########################                ] | 62% Completed | 15.4s[########################                ] | 62% Completed | 15.5s[########################                ] | 62% Completed | 15.6s[########################                ] | 62% Completed | 15.7s[########################                ] | 62% Completed | 15.8s[########################                ] | 62% Completed | 15.9s[########################                ] | 62% Completed | 16.0s[########################                ] | 62% Completed | 16.1s[########################                ] | 62% Completed | 16.2s[###########################             ] | 68% Completed | 16.3s[############################            ] | 72% Completed | 16.4s[####################################    ] | 92% Completed | 16.5s[########################################] | 100% Completed | 16.6s
+building file list ... done
+./
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/.zgroup
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Depth/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Depth/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Depth/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Depth/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/0.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/1.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/10.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/11.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/12.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/2.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/3.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/4.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/5.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/6.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/7.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/8.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/ETAN/9.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/0.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/1.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/10.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/11.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/12.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/2.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/3.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/4.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/5.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/6.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/7.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/8.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHIBOT/9.0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHrefC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHrefC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHrefC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHrefC/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHrefF/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHrefF/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHrefF/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/PHrefF/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/XC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/XC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/XC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/XC/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/XG/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/XG/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/XG/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/XG/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/YC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/YC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/YC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/YC/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/YG/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/YG/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/YG/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/YG/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Z/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Z/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Z/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Z/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zl/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zl/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zl/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zl/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zp1/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zp1/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zp1/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zp1/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zu/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zu/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zu/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/Zu/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/drC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/drC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/drC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/drC/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/drF/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/drF/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/drF/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/drF/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dxC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dxC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dxC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dxC/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dxG/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dxG/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dxG/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dxG/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dyC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dyC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dyC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dyC/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dyG/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dyG/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dyG/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/dyG/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/1
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/10
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/11
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/12
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/2
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/3
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/4
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/5
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/6
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/7
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/8
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/iter/9
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rA/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rA/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rA/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rA/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAs/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAs/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAs/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAs/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAw/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAw/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAw/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAw/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAz/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAz/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAz/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rAz/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowC/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowS/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowS/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowS/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowS/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowW/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowW/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowW/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rLowW/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfC/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfS/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfS/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfS/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfS/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfW/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfW/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfW/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rSurfW/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rhoRef/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rhoRef/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rhoRef/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/rhoRef/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/time/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/time/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/time/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/twod.zarr/time/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/.zgroup
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/AreaS/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/AreaS/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/AreaS/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/AreaS/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/PHrefC/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/PHrefC/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/PHrefC/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/PHrefC/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/Z/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/Z/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/Z/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/Z/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/drF/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/drF/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/drF/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/drF/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/1
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/2
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/3
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/4
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/iter/5
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/rhoRef/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/rhoRef/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/rhoRef/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/rhoRef/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/time/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/time/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/time/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/time/0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/.zarray
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/.zattrs
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/0.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/1.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/2.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/3.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/4.0
+Iso3kmlowU10Amp305f141B059AllRough600ConsNsq/workMean.zarr/work/5.0
+
+sent 23,838,242 bytes  received 4,028 bytes  836,570.88 bytes/sec
+total size is 587,887,065  speedup is 24.66

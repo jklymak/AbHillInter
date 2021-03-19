@@ -1,0 +1,9 @@
+/home/jklymak/project/jklymak/AbHillInter/python
+  File "getMeanVel.py", line 44
+    work['meanU'] = ds['UVEL'] * ds['hFacW'] * ds['rAw']).sum(dim=('YC', 'XG'))
+                                                        ^
+SyntaxError: unmatched ')'
+building file list ... done
+
+sent 44,209 bytes  received 20 bytes  17,691.60 bytes/sec
+total size is 628,205,786  speedup is 14,203.48

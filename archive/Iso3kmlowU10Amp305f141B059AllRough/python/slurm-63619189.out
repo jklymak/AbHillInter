@@ -1,0 +1,45 @@
+/home/jklymak/project/jklymak/AbHillInter/python
+['getWork.py', 'Iso3kmlowU10Amp305f141B059AllRough600Block']
+processing ../results/Iso3kmlowU10Amp305f141B059AllRough600Block/input/Iso3kmlowU10Amp305f141B059AllRough600Block
+Writing to ../reduceddata/Iso3kmlowU10Amp305f141B059AllRough600Block/
+Traceback (most recent call last):
+  File "getWork.py", line 32, in <module>
+    with xm.open_mdsdataset(data_dir, prefix=['spinup2d'], endian="<", geometry='cartesian') as ds:
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xmitgcm/mds_store.py", line 179, in open_mdsdataset
+    iters = _get_all_iternums(data_dir, file_prefixes=prefix)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xmitgcm/mds_store.py", line 922, in _get_all_iternums
+    all_datafiles = listdir_fnmatch(data_dir, file_format)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/cachetools/func.py", line 67, in wrapper
+    v = func(*args, **kwargs)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xmitgcm/file_utils.py", line 29, in listdir_fnmatch
+    files = listdir(path)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/cachetools/func.py", line 67, in wrapper
+    v = func(*args, **kwargs)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xmitgcm/file_utils.py", line 10, in listdir
+    return os.listdir(path)
+FileNotFoundError: [Errno 2] No such file or directory: '../results/Iso3kmlowU10Amp305f141B059AllRough600Block/input'
+['getMeanVel.py', 'Iso3kmlowU10Amp305f141B059AllRough600Block']
+processing ../results/Iso3kmlowU10Amp305f141B059AllRough600Block/input/Iso3kmlowU10Amp305f141B059AllRough600Block
+Writing to ../reduceddata/Iso3kmlowU10Amp305f141B059AllRough600Block/
+Traceback (most recent call last):
+  File "getMeanVel.py", line 36, in <module>
+    with xm.open_mdsdataset(data_dir, prefix=['means'], endian="<", geometry='cartesian') as ds:
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xmitgcm/mds_store.py", line 179, in open_mdsdataset
+    iters = _get_all_iternums(data_dir, file_prefixes=prefix)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xmitgcm/mds_store.py", line 922, in _get_all_iternums
+    all_datafiles = listdir_fnmatch(data_dir, file_format)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/cachetools/func.py", line 67, in wrapper
+    v = func(*args, **kwargs)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xmitgcm/file_utils.py", line 29, in listdir_fnmatch
+    files = listdir(path)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/cachetools/func.py", line 67, in wrapper
+    v = func(*args, **kwargs)
+  File "/home/jklymak/venvs/AbHillInter2/lib/python3.8/site-packages/xmitgcm/file_utils.py", line 10, in listdir
+    return os.listdir(path)
+FileNotFoundError: [Errno 2] No such file or directory: '../results/Iso3kmlowU10Amp305f141B059AllRough600Block/input'
+building file list ... done
+./
+Iso3kmlowU10Amp305f141B059AllRough600Block/
+
+sent 32,365 bytes  received 36 bytes  1,136.88 bytes/sec
+total size is 540,149,675  speedup is 16,670.77

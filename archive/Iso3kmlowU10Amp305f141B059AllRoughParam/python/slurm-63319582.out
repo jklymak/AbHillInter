@@ -1,0 +1,88 @@
+/home/jklymak/project/jklymak/AbHillInter/python
+<xarray.Dataset>
+Dimensions:  (XC: 480, XG: 480, YC: 400, YG: 400, Z: 400, Zl: 400, Zp1: 401, Zu: 400, time: 19)
+Coordinates: (12/36)
+  * XC       (XC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.436e+06 1.438e+06
+  * YC       (YC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.196e+06 1.198e+06
+  * XG       (XG) float64 0.0 3e+03 6e+03 ... 1.431e+06 1.434e+06 1.437e+06
+  * YG       (YG) float64 0.0 3e+03 6e+03 ... 1.191e+06 1.194e+06 1.197e+06
+  * Z        (Z) float64 -5.0 -15.0 -25.0 ... -3.975e+03 -3.985e+03 -3.995e+03
+  * Zp1      (Zp1) float64 0.0 -10.0 -20.0 -30.0 ... -3.98e+03 -3.99e+03 -4e+03
+    ...       ...
+    rLowW    (YC, XG) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rLowC    (YC, XC) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    rhoRef   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    rSurfW   (YC, XG) float64 dask.array<chunksize=(400, 480), meta=np.ndarray>
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 0 days 1 days 2 days ... 17 days 18 days
+Data variables:
+    UVEL     (time, Z, YC, XG) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+    VVEL     (time, Z, YG, XC) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+    WVEL     (time, Zl, YC, XC) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+    THETA    (time, Z, YC, XC) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+    PHIHYD   (time, Z, YC, XC) float64 dask.array<chunksize=(1, 400, 400, 480), meta=np.ndarray>
+<xarray.Dataset>
+Dimensions:  (XC: 480, XG: 480, Z: 400, Zl: 400, Zp1: 401, Zu: 400, time: 19)
+Coordinates: (12/36)
+  * XC       (XC) float64 1.5e+03 4.5e+03 7.5e+03 ... 1.436e+06 1.438e+06
+    YC       float64 6.015e+05
+  * XG       (XG) float64 0.0 3e+03 6e+03 ... 1.431e+06 1.434e+06 1.437e+06
+    YG       float64 6e+05
+  * Z        (Z) float64 -5.0 -15.0 -25.0 ... -3.975e+03 -3.985e+03 -3.995e+03
+  * Zp1      (Zp1) float64 0.0 -10.0 -20.0 -30.0 ... -3.98e+03 -3.99e+03 -4e+03
+    ...       ...
+    rLowW    (XG) float64 dask.array<chunksize=(480,), meta=np.ndarray>
+    rLowC    (XC) float64 dask.array<chunksize=(480,), meta=np.ndarray>
+    rhoRef   (Z) float64 dask.array<chunksize=(400,), meta=np.ndarray>
+    rSurfW   (XG) float64 dask.array<chunksize=(480,), meta=np.ndarray>
+    iter     (time) int64 dask.array<chunksize=(1,), meta=np.ndarray>
+  * time     (time) timedelta64[ns] 0 days 1 days 2 days ... 17 days 18 days
+Data variables:
+    UVEL     (time, Z, XG) float64 dask.array<chunksize=(1, 400, 480), meta=np.ndarray>
+    VVEL     (time, Z, XC) float64 dask.array<chunksize=(1, 400, 480), meta=np.ndarray>
+    WVEL     (time, Zl, XC) float64 dask.array<chunksize=(1, 400, 480), meta=np.ndarray>
+    THETA    (time, Z, XC) float64 dask.array<chunksize=(1, 400, 480), meta=np.ndarray>
+    PHIHYD   (time, Z, XC) float64 dask.array<chunksize=(1, 400, 480), meta=np.ndarray>
+Traceback (most recent call last):
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 199, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/project/6001902/jklymak/AbHillInter/reduceddata/Iso3kmlowU10Amp305f141B059MixRoughPatch100/SliceMid.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "getSlice.py", line 25, in <module>
+    ds.to_netcdf(f'../reduceddata/{runname}/SliceMid.nc', engine='netcdf4')
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/core/dataset.py", line 1689, in to_netcdf
+    return to_netcdf(
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/api.py", line 1090, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 378, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 326, in __init__
+    self.format = self.ds.data_model
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 387, in ds
+    return self._acquire()
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/netCDF4_.py", line 381, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/python/3.8.2/lib/python3.8/contextlib.py", line 113, in __enter__
+    return next(self.gen)
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 187, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/home/jklymak/venvs/AbHillInter/lib/python3.8/site-packages/xarray/backends/file_manager.py", line 205, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2358, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1926, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: b'/project/6001902/jklymak/AbHillInter/reduceddata/Iso3kmlowU10Amp305f141B059MixRoughPatch100/SliceMid.nc'
+Exception ignored in: <function Pool.__del__ at 0x2ae215081a60>
+Traceback (most recent call last):
+  File "/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/python/3.8.2/lib/python3.8/multiprocessing/pool.py", line 268, in __del__
+  File "/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/python/3.8.2/lib/python3.8/multiprocessing/queues.py", line 362, in put
+AttributeError: 'NoneType' object has no attribute 'dumps'
+building file list ... done
+Iso3kmlowU10Amp305f141B059MixRoughPatch100/SliceMid.nc
+
+sent 2,889 bytes  received 86,233 bytes  25,463.43 bytes/sec
+total size is 90,263,869  speedup is 1,012.81
