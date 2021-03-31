@@ -3,7 +3,7 @@ import os
 import subprocess
 
 os.system('sq')
-out=subprocess.check_output('squeue -h -t RUNNING -u jklymak --Format="Name:50"', 
+out=subprocess.check_output('squeue -h -t RUNNING -u jklymak --Format="Name:70"', 
                             shell=True, text=True)
 out = out.splitlines()
 # print(out)

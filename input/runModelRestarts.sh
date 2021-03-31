@@ -4,13 +4,13 @@
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48
-#SBATCH --time=0-02:00
+#SBATCH --time=0-02:10
 #SBATCH --mem=0
-#SBATCH --constraint=[skylake|cascade]
+#SBATCH --constraint=[skylake]
 
 # run from runAll.sh  start and stop come from -v arguments.
 
-module swap mpt compiler/intelmpi
+module load compiler/intelmpi
 
 PARENT=AbHillInter
 

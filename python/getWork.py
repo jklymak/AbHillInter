@@ -47,9 +47,11 @@ for runname in runnames:
             w.attrs['Processing'] = 'made with getWork.py'
 
             work = xr.Dataset({'work': w})
-            work['meanU'] = (ds['UVEL'] * ds['hFacW'] * ds['rAw'] * f0 * U0 ).sum(dim=('YC', 'XG'))
+            work['meanU'] = (ds['UVEL'] * ds['hFacW'] * ds['rAw']).sum(dim=('YC', 'XG'))
+            
             work['AreaS'] = ds['rAs'].sum(dim=('YG', 'XC'))
-
+            work['meanU'] = work['meanU'] / work['AreaS'].value
+            
             with ProgressBar():
                 work.to_zarr(f'{out_dir}/work.zarr', mode='w')
 

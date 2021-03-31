@@ -1,5 +1,5 @@
 #!/bin/bash -l
-todo=Iso3kmlowU10N0005Amp305f141B059AllRough
+todo=Iso3kmlowU10N10Amp305f141B000AllRough
 
 day=86400
 dt=60

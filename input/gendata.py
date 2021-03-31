@@ -23,9 +23,9 @@ L0 = 1.8e-4/2./np.pi
 runtype = 'low'  # 'full','filt','low'
 setupname=''
 u0 = 10
-N0 = 20e-4
+N0 = 1e-3
 f0 = 1.410e-4
-geo_beta = 5.9e-12
+geo_beta = 5.9e-12 * 0
 # geo_beta = 0
 wall = False
 patch = False
@@ -40,7 +40,7 @@ if patch:
 
 suff = 'AllRough'
 
-runname='Iso3km%sU%dN%04dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
+runname='Iso3km%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
 comments = 'Forward basic case'
 
@@ -354,10 +354,10 @@ f.close()
 qdrag = 0.0 * np.ones((ny, nx))
 ldrag = 0.0 * np.ones((ny, nx))
 
-hh = 2 * amp * np.ones((ny, nx))
+hh = amp * np.ones((ny, nx))
 hh = hh * env
 qdrag  = hh * np.pi**2 / 2 / 100e3
-ldrag  = hh**2 * np.pi / 2 / 100e3 * N0
+ldrag  = hh**2 * np.pi / 2 / 100e3  # * N0
 
 #X, Y = np.meshgrid(x, y)
 #R2 = X**2 + Y**2
@@ -379,33 +379,32 @@ with open(indir+"/DragvLin.bin", "wb") as f:
 
 # make a file that spreads the stress...  Note sum fac*dz = 1
 
-dragfac = np.zeros((nz, ny, nx))
-for i in range(nx):
-    for j in range(ny):
-      if False:
-        ind = np.where((-z>=topo[j, i]))[0]
-        if len(ind) > 0:
-            dragfac[ind, j, i] = np.exp((z[ind] + topo[j, i]) / 300.)
-            dsum = np.sum(dragfac[:, j, i] * dz[:])
-            dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
-      elif True:
-        ind = np.where((-z>=topo[j, i]) & (-z<=topo[j, i]+300))[0]
-        if len(ind) > 0:
-            dragfac[ind, j, i] = 1.0
-            dsum = np.sum(dragfac[:, j, i] * dz[:])
-            dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
-      else:
-        ind = np.where((-z>=topo[j, i]))[0]
-        if len(ind) > 0:
-            dragfac[ind[-1], j, i] = 1.0
-            dsum = np.sum(dragfac[:, j, i] * dz[:])
-            dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
+dragscale = np.zeros((ny, nx)) + amp
+if 0:
+  for i in range(nx):
+      for j in range(ny):
+        if False:
+          ind = np.where((-z>=topo[j, i]))[0]
+          if len(ind) > 0:
+              dragfac[ind, j, i] = np.exp((z[ind] + topo[j, i]) / 300.)
+              dsum = np.sum(dragfac[:, j, i] * dz[:])
+              dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
+        elif True:
+          ind = np.where((-z>=topo[j, i]) & (-z<=topo[j, i]+300))[0]
+          if len(ind) > 0:
+              dragfac[ind, j, i] = 1.0
+              dsum = np.sum(dragfac[:, j, i] * dz[:])
+              dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
+        else:
+          ind = np.where((-z>=topo[j, i]))[0]
+          if len(ind) > 0:
+              dragfac[ind[-1], j, i] = 1.0
+              dsum = np.sum(dragfac[:, j, i] * dz[:])
+              dragfac[ind, j, i] =  dragfac[ind, j, i] / dsum
 
-print(dragfac[:, 4, 4])
-print(np.sum(dragfac[:, 4, 4]*dz[:]))
 
-with open(indir+"/BotDragFac.bin", "wb") as f:
-	dragfac.tofile(f)
+with open(indir+"/BotDragVert.bin", "wb") as f:
+  dragscale.tofile(f)
 
 
 ###### Manually make the directories

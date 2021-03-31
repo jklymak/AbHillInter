@@ -6,13 +6,11 @@
  Var_Bot_Drag_vLinFile = '../indata/DragvLin.bin',
  Var_Bot_Drag_uQuadFile = '../indata/DraguQuad.bin',
  Var_Bot_Drag_vQuadFile = '../indata/DragvQuad.bin',
- Var_Bot_Drag_facFile = '../indata/BotDragFac.bin',
+ Var_Bot_Drag_vertFile = '../indata/BotDragVert.bin',
 # power law for near-bottom N:  drag coefficient will be multiplied by N^pow
 # Setting these to zero will save the N calculation.
- Var_Bot_Drag_LinNPow = 0.0,
+ Var_Bot_Drag_LinNPow = 1.0,
  Var_Bot_Drag_QuadNPow = 0.0,
 # vertical scale over which to calculate N.
  Var_Bot_Drag_NScale = 314.0,
-# averaging scale
- Var_Bot_Drag_cfac = 1.0
 /
